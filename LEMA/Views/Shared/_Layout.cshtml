@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/login.css" />
+    <link rel="stylesheet" href="~/css/menu.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/menu.js"></script>
+</head>
+<body>
+    @if (ViewBag.Logado)
+    {
+        <div class="sidebar">
+            <div class="logo-details">
+                <img class="icon" src="~/img/LogoPNG.png" alt="Logo">
+                <i class='bx bx-menu' id="btn"></i>
+            </div>
+            <ul class="nav-list">
+                <li>
+                    <a href="/Home/Index">
+                        <i class='bx bxs-home'></i>
+                        <span class="links_name">Home</span>
+                    </a>
+                    <span class="tooltip">Home</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bx-pie-chart-alt-2'></i>
+                        <span class="links_name">Dashboard</span>
+                    </a>
+                    <span class="tooltip">Dashboard</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bx-bar-chart-alt'></i>
+                        <span class="links_name">Analytics</span>
+                    </a>
+                    <span class="tooltip">Analytics</span>
+                </li>
+                <li>
+                    <a href="~/Dispositivo/Index">
+                        <i class='bx bx-sitemap'></i>
+                        <span class="links_name">Dispositivo</span>
+                    </a>
+                    <span class="tooltip">Dispositivo</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bxs-group'></i>
+                        <span class="links_name">Sobre</span>
+                    </a>
+                    <span class="tooltip">Sobre</span>
+                </li>
+                @if (ViewBag.Perfil == "Administrador")
+                {
+                    <li>
+                        <a href="/Usuario/Index">
+                            <i class='bx bxs-cog'></i>
+                            <span class="links_name">Configurações</span>
+                        </a>
+                        <span class="tooltip">Configurações</span>
+                    </li>
+                }
+                <li class="profile">
+                    <div class="profile-details">
+                        <img src="~/img/Profile-Icon.png" alt="Foto">
+                        <div class="name_job">
+                            <div class="name">@ViewBag.Username</div>
+                            <div class="job">Empresa</div>
+                        </div>
+                    </div>
+                    <a onclick="menu.confirma()">
+                        <i class='bx bx-log-out' id="log_out"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    }
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <dialog id="logoutModal" style="padding: 100px;">
+        <div class="text">Deseja realmente sair?</div>
+
+        <div>
+            <a onclick="document.getElementById('logoutModal').close();">Cancelar</a>
+            <a href="/Login/Logout">Confirmar</a>
+        </div>
+    </dialog>
+</body>
+</html>

@@ -1,0 +1,35 @@
+﻿@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<form action="/Login/ValidaLogin" method="post" style="padding-left: 0px !important;">
+    <div class="container">
+        <div class="col-12 text-center align-self-center py-5">
+            <img class="logo" src="~/img/LogoPNG.png" alt="Logo">
+            <div class="card-back m-0 mx-auto">
+                <div class="card-front">
+                    <div class="center text-center" style="top: 40px;">
+                        <h4 class="pb-3">Log In</h4>
+                        <div class="form-group">
+                            <input type="text" class="form-style" name="Usuario" autocomplete="off" placeholder="Usuario" value="@Model.Usuario">
+                            <span asp-validation-for="Usuario" class="text-danger"></span>
+                            <i class="input-icon uil uil-user"></i>
+                        </div>
+                        <div class="form-group mt-2">
+                            <input type="password" class="form-style" name="Senha" autocomplete="off" placeholder="Senha" value="@Model.Senha">
+                            <span asp-validation-for="Senha" class="text-danger"></span>
+                            <i class="input-icon uil uil-lock-alt"></i>
+                        </div>
+                        <button type="submit" class="btn mt-4" style="padding: 0px 38px;">Log In</button>
+                        <div class="form-group mt-2">
+                            <p>ou</p>
+                            <a href="/Login/Register" class="btn">Registrar-se</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
