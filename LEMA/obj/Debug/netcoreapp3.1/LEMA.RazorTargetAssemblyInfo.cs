@@ -17,7 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyProductAttribute("LEMA")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+91607c0d79e6bf1056aad97d5b9b7fefa84844bb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LEMA.Views")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
