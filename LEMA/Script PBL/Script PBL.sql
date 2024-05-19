@@ -6,68 +6,29 @@ DROP TABLE Dispositivo
 DROP TABLE Usuario
 
 CREATE TABLE Usuario (
-    IdUsuario INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
-    senha VARCHAR(50) NOT NULL
+    senha VARCHAR(50) NOT NULL,
+	perfil VARCHAR(50) NOT NULL,
+	imagem VARBINARY(MAX)
 ); 
 GO 
-
+select * from Usuario
 CREATE TABLE Dispositivo (
-    IdDispositivo INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     descricao VARCHAR(50) NOT NULL
 ); 
 GO
 
 CREATE TABLE UsuarioDispositivo (
-    IdUsuarioDispositivo INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     IdUsuario INT NOT NULL,
     IdDispositivo INT NOT NULL,
-    FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario),
-    FOREIGN KEY (IdDispositivo) REFERENCES Dispositivo(IdDispositivo)
+    FOREIGN KEY (IdUsuario) REFERENCES Usuario(id),
+    FOREIGN KEY (IdDispositivo) REFERENCES Dispositivo(id)
 );
 GO
-
 -------------------------------------------------------------------------------------------------------
-
-CREATE or ALTER PROCEDURE spInserirUsuario
-(
- @username VARCHAR(50),
- @senha VARCHAR(50)
-)
-AS
-BEGIN
- INSERT INTO Usuario
- (username, senha)
- VALUES
- (@username, @senha)
-END
-GO
-
-CREATE or ALTER PROCEDURE spAlterarUsuario
-(
- @id INT,
- @username VARCHAR(50),
- @senha VARCHAR(50)
-)
-AS
-BEGIN
- UPDATE Usuario SET
- username = @username,
- senha = @senha
- WHERE IdUsuario = @id
-END
-GO
-
-CREATE or ALTER PROCEDURE spExcluirUsuario
-(
- @id INT
-)
-AS
-BEGIN
- DELETE FROM Usuario WHERE IdUsuario = @id
-END
-GO
-
 CREATE or ALTER PROCEDURE spValidarUsuario
 (
  @username VARCHAR(50),
@@ -85,15 +46,107 @@ CREATE or ALTER PROCEDURE spConsultarUsuario
 )
 AS
 BEGIN
- SELECT * FROM Usuario WHERE username = @username;
+ SELECT * FROM Usuario WHERE username = @username
 END
 GO
 
 
-CREATE or ALTER PROCEDURE spListagemUsuarios
+CREATE OR ALTER PROCEDURE spConsultaPerfil
+(
+ @id INT
+)
 AS
 BEGIN
- SELECT * FROM Usuario
+ SELECT perfil FROM Usuario WHERE id = @id
+END
+GO
+
+-------------------------------------------------------------------------------------------------------
+CREATE or ALTER PROCEDURE spInserirUsuario
+(
+ @id INT,
+ @username VARCHAR(50),
+ @senha VARCHAR(50),
+ @perfil VARCHAR(50)
+)
+AS
+BEGIN
+ INSERT INTO Usuario
+ (username, senha, perfil)
+ VALUES
+ (@username, @senha, @perfil)
+END
+GO
+
+CREATE or ALTER PROCEDURE spAlterarUsuario
+(
+ @id INT,
+ @username VARCHAR(50),
+ @senha VARCHAR(50),
+ @perfil VARCHAR(50)
+ --@imagem VARBINARY(MAX)
+)
+AS
+BEGIN
+ UPDATE Usuario SET
+ username = @username,
+ senha = @senha,
+ perfil = @perfil
+ --imagem = @imagem
+ WHERE id = @id
+END
+GO
+
+CREATE OR ALTER PROCEDURE spConsulta
+(
+ @id INT ,
+ @tabela VARCHAR(MAX)
+)
+AS
+BEGIN
+ DECLARE @sql VARCHAR(MAX);
+ SET @sql = 'SELECT * FROM ' + @tabela +
+ ' WHERE id = ' + CAST(@id AS VARCHAR(MAX))
+ EXEC(@sql)
+END
+GO
+
+CREATE or ALTER PROCEDURE spExcluir
+(
+ @id INT ,
+ @tabela VARCHAR(MAX)
+)
+AS
+BEGIN
+ DECLARE @sql VARCHAR(MAX);
+ SET @sql = ' DELETE ' + @tabela +
+ ' WHERE id = ' + CAST(@id AS VARCHAR(MAX))
+ EXEC(@sql)
+END
+GO
+
+CREATE or ALTER PROCEDURE spListagemUsuarios
+(
+ @tabela VARCHAR(MAX),
+ @ordem VARCHAR(MAX))
+AS
+BEGIN
+ EXEC('SELECT * FROM ' + @tabela +
+ ' ORDER BY ' + @ordem)
+END
+GO
+
+-------------------------------------------------------------------------------------------------------
+CREATE or ALTER PROCEDURE spAlterarImagemUsuario
+(
+ @id INT,
+ @imagem VARBINARY(MAX)
+)
+AS
+BEGIN
+ UPDATE Usuario SET
+ imagem = @imagem
+ WHERE id = @id
 END
 GO
 
@@ -121,7 +174,7 @@ AS
 BEGIN
  UPDATE Dispositivo SET
  descricao = @descricao
- WHERE IdDispositivo = @id
+ WHERE id = @id
 END
 GO
 
@@ -131,7 +184,7 @@ CREATE or ALTER PROCEDURE spExcluirDispositivo
 )
 AS
 BEGIN
- DELETE FROM Dispositivo WHERE IdDispositivo = @id
+ DELETE FROM Dispositivo WHERE id = @id
 END
 GO
 
@@ -141,11 +194,19 @@ CREATE or ALTER PROCEDURE spConsultarDispositivo
 )
 AS
 BEGIN
- SELECT * FROM Dispositivo WHERE IdDispositivo = @id
+ SELECT * FROM Dispositivo WHERE id = @id
 END
 GO
 
 CREATE or ALTER PROCEDURE spListagemDispositivos
+AS
+BEGIN
+ SELECT * FROM Dispositivo
+END
+GO
+
+-------------------------------------------------------------------------------------------------------
+CREATE or ALTER PROCEDURE spListagemTemperatura
 AS
 BEGIN
  SELECT * FROM Dispositivo
