@@ -23,6 +23,7 @@ namespace PBL.Controllers
         {
             UsuarioDAO u = new UsuarioDAO();
             ViewBag.Perfil = u.ConsultaPerfil(HelperControllers.GetUsuarioId(HttpContext.Session));
+            ViewBag.Imagem64 = HelperControllers.GetImagemBase64(HttpContext.Session);
             ViewBag.Logado = HelperControllers.VerificaUserLogado(HttpContext.Session);
             ViewBag.Username = HelperControllers.GetUsername(HttpContext.Session);
             return View();

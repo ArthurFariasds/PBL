@@ -48,6 +48,7 @@ namespace PBL.Controllers
             if (GeraProximoId && Operacao == "I")
                 model.Id = DAO.ProximoId();
         }
+
         public virtual IActionResult Save(T model, string Operacao)
         {
             try
@@ -73,16 +74,12 @@ namespace PBL.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
+
         protected virtual void ValidaDados(T model, string operacao)
         {
             ModelState.Clear();
-            //if (operacao == "I" && DAO.Consulta(model.Id) != null)
-            //    ModelState.AddModelError("Id", "Código já está em uso!");
-            //if (operacao == "A" && DAO.Consulta(model.Id) == null)
-            //    ModelState.AddModelError("Id", "Este registro não existe!");
-            //if (model.Id <= 0)
-            //    ModelState.AddModelError("Id", "Id inválido!");
         }
+
         public IActionResult Edit(int id)
         {
             try
@@ -102,6 +99,7 @@ namespace PBL.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
+
         public IActionResult Delete(int id)
         {
             try
@@ -118,6 +116,10 @@ namespace PBL.Controllers
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
+            ViewBag.Username = HelperControllers.GetUsername(HttpContext.Session);
+            ViewBag.Perfil = HelperControllers.GetPerfil(HttpContext.Session);
+            ViewBag.Imagem64 = HelperControllers.GetImagemBase64(HttpContext.Session);
+
             if (ExigeAutenticacao && !HelperControllers.VerificaUserLogado(HttpContext.Session))
                 context.Result = RedirectToAction("Index", "Login");
             else

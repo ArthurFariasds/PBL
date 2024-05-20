@@ -24,5 +24,15 @@ namespace PBL.Controllers
         {
             return int.Parse(session.GetString("id"));
         }
+
+        public static string GetPerfil(ISession session)
+        {
+            return session.GetString("Perfil");
+        }
+
+        public static string GetImagemBase64(ISession session)
+        {
+            return session.GetString("Imagem64");
+        }
     }
 }

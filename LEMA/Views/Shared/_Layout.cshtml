@@ -70,7 +70,14 @@
                 }
                 <li class="profile">
                     <div class="profile-details">
-                        <img src="~/img/Profile-Icon.png" alt="Foto">
+                        @if (string.IsNullOrEmpty(ViewBag.Imagem64))
+                        {
+                            <img src="~/img/Profile-Icon.png" alt="Foto">
+                        }
+                        else
+                        {
+                            <img src="data:image/jpeg;base64,@ViewBag.Imagem64" alt="Foto" />
+                        }
                         <div class="name_job">
                             <div class="name">@ViewBag.Username</div>
                             <div class="job">Empresa</div>

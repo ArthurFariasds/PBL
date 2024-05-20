@@ -10,9 +10,9 @@ namespace PBL.DAO
     {
         protected override SqlParameter[] CriaParametros(UsuarioViewModel model)
         {
-            object imgByte = model.ImagemEmByte;
+            byte[] imgByte = model.ImagemEmByte;
             if (imgByte == null)
-                imgByte = DBNull.Value;
+                imgByte = Array.Empty<byte>();
 
             SqlParameter[] parametros = new SqlParameter[5];
             parametros[0] = new SqlParameter("id", model.Id);

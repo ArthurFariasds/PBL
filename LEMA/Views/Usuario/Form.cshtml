@@ -1,11 +1,15 @@
 ﻿@model UsuarioViewModel
-<head>
-    <link rel="stylesheet" href="~/css/usuario.css">
-</head>
-<h2>Cadastro de Usuário</h2>
-<form action="Save" method="post" enctype="multipart/form-data" class="col-md-6">
-    <input type="hidden" value="@ViewBag.Operacao" name="operacao" />
 
+@{
+    ViewData["Title"] = "Cadastro Usuário";
+}
+<link rel="stylesheet" href="~/css/usuario.css">
+
+<h1 class="padding-zero">Cadastro de Usuário</h1>
+<form action="Save" method="post" enctype="multipart/form-data" class="col-md-6 padding-zero">
+    <input type="hidden" value="@ViewBag.Operacao" name="operacao" />
+    <br />
+    <br />
     <div class="row">
         <div class="col-md-3 card-profile">
             <label for="Imagem" class="bx bx-plus-circle">

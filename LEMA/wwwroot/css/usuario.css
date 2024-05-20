@@ -8,8 +8,15 @@
     background-color: #1f2029;
 }
 
-.menu-aberto {
-    padding-left: 0;
+.padding-zero {
+    padding-left: 0 !important;
+}
+
+h1{
+    color: #ffeba7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 h2 {
