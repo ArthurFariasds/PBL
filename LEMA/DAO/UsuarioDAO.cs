@@ -10,13 +10,19 @@ namespace PBL.DAO
     {
         protected override SqlParameter[] CriaParametros(UsuarioViewModel model)
         {
-            SqlParameter[] parametros = new SqlParameter[4];
+            object imgByte = model.ImagemEmByte;
+            if (imgByte == null)
+                imgByte = DBNull.Value;
+
+            SqlParameter[] parametros = new SqlParameter[5];
             parametros[0] = new SqlParameter("id", model.Id);
             parametros[1] = new SqlParameter("username", model.Usuario);
             parametros[2] = new SqlParameter("senha", model.Senha);
             parametros[3] = new SqlParameter("perfil", model.Perfil);
+            parametros[4] = new SqlParameter("imagem", imgByte);
+
             return parametros;
-            
+
         }
 
         protected override UsuarioViewModel MontaModel(DataRow registro)
@@ -26,6 +32,9 @@ namespace PBL.DAO
             c.Usuario = registro["username"].ToString();
             c.Senha = registro["senha"].ToString();
             c.Perfil = registro["perfil"].ToString();
+            if (registro["imagem"] != DBNull.Value)
+                c.ImagemEmByte = registro["imagem"] as byte[];
+
             return c;
         }
 

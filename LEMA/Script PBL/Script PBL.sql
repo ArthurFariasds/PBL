@@ -67,14 +67,15 @@ CREATE or ALTER PROCEDURE spInserirUsuario
  @id INT,
  @username VARCHAR(50),
  @senha VARCHAR(50),
- @perfil VARCHAR(50)
+ @perfil VARCHAR(50),
+ @imagem VARBINARY(MAX)
 )
 AS
 BEGIN
  INSERT INTO Usuario
- (username, senha, perfil)
+ (username, senha, perfil, imagem)
  VALUES
- (@username, @senha, @perfil)
+ (@username, @senha, @perfil, @imagem)
 END
 GO
 
@@ -83,16 +84,16 @@ CREATE or ALTER PROCEDURE spAlterarUsuario
  @id INT,
  @username VARCHAR(50),
  @senha VARCHAR(50),
- @perfil VARCHAR(50)
- --@imagem VARBINARY(MAX)
+ @perfil VARCHAR(50),
+ @imagem VARBINARY(MAX)
 )
 AS
 BEGIN
  UPDATE Usuario SET
  username = @username,
  senha = @senha,
- perfil = @perfil
- --imagem = @imagem
+ perfil = @perfil,
+ imagem = @imagem
  WHERE id = @id
 END
 GO
@@ -212,3 +213,5 @@ BEGIN
  SELECT * FROM Dispositivo
 END
 GO
+
+

@@ -1,29 +1,46 @@
 ﻿@model List<UsuarioViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="~/css/usuario.css">
+</head>
+
 <h2>Listagem de Usuários</h2>
-
-<a href="/usuario/create" class="btn btn-sucess"">Novo Registro</a>
 <br />
 <br />
-
 <table class="table table-responsive table-hover">
     <tr>
-        <th style="text-align:center">AÇÕES</th>
+        <th style="text-align:center">FOTO</th>
         <th style="text-align:center">ID</th>
         <th style="text-align:center">USERNAME</th>
         <th style="text-align:center">SENHA</th>
         <th style="text-align:center">PERFIL</th>
+        <th style="text-align:center">AÇÕES</th>
     </tr>
     @foreach (var usuario in Model)
     {
         <tr>
-            <td style="text-align:center">
-                <a href="/usuario/edit?id=@usuario.Id"> <span class="glyphicon glyphicon-edit"></span></a>
-                <a href="/usuario/delete?id=@usuario.Id"> <span class="glyphicon glyphicon-remove"></span></a>
+            <td>
+                @if(usuario.ImagemEmBase64 == "")
+                {
+                    <img id="imgPreview" src="~/img/Profile-Icon.png" class="img-responsive" width="50">
+                }
+                else
+                {
+                    <img id="imgPreview" src="data:image/jpeg;base64,@usuario.ImagemEmBase64" class="img-responsive" width="50">
+                }
+                
             </td>
             <td style="text-align:center">@usuario.Id</td>
             <td style="text-align:center">@usuario.Usuario</td>
             <td style="text-align:center">@usuario.Senha</td>
             <td style="text-align:center">@usuario.Perfil</td>
+            <td style="text-align:center">
+                <a href="/usuario/edit?id=@usuario.Id"> <span class="bx bxs-pencil"></span></a>
+                <a href="/usuario/delete?id=@usuario.Id"> <span class="bx bxs-trash-alt"></span></a>
+            </td>
         </tr>
     }
 </table>
+<a href="/usuario/create" class="btn btn-info">Novo Registro</a>
