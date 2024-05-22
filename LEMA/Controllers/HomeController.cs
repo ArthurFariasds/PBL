@@ -26,6 +26,7 @@ namespace PBL.Controllers
             ViewBag.Imagem64 = HelperControllers.GetImagemBase64(HttpContext.Session);
             ViewBag.Logado = HelperControllers.VerificaUserLogado(HttpContext.Session);
             ViewBag.Username = HelperControllers.GetUsername(HttpContext.Session);
+            ViewBag.IdUsuario = HelperControllers.GetUsuarioId(HttpContext.Session);
             return View();
         }
 

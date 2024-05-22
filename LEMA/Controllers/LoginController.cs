@@ -47,6 +47,7 @@ namespace PBL.Controllers
                 UsuarioDAO dao = new UsuarioDAO();
                 UsuarioViewModel usuario = dao.Consulta(HelperControllers.GetUsuarioId(HttpContext.Session));
 
+                ViewBag.IdUsuario = HelperControllers.GetUsuarioId(HttpContext.Session);
                 ViewBag.Imagem64 = usuario.ImagemEmBase64;
                 HttpContext.Session.SetString("Perfil", usuario.Perfil);
                 HttpContext.Session.SetString("Imagem64", usuario.ImagemEmBase64);

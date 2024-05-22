@@ -7,6 +7,7 @@ namespace PBL.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.IdUsuario = HelperControllers.GetUsuarioId(HttpContext.Session);
             ViewBag.Logado = true;
             return View(); 
         }

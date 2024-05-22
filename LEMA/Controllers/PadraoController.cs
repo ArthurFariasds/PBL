@@ -116,6 +116,7 @@ namespace PBL.Controllers
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
+            ViewBag.IdUsuario = HelperControllers.GetUsuarioId(HttpContext.Session);
             ViewBag.Username = HelperControllers.GetUsername(HttpContext.Session);
             ViewBag.Perfil = HelperControllers.GetPerfil(HttpContext.Session);
             ViewBag.Imagem64 = HelperControllers.GetImagemBase64(HttpContext.Session);
