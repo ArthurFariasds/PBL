@@ -38,13 +38,6 @@
                     <span class="tooltip">Dashboard</span>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class='bx bx-bar-chart-alt'></i>
-                        <span class="links_name">Analytics</span>
-                    </a>
-                    <span class="tooltip">Analytics</span>
-                </li>
-                <li>
                     <a href="~/Dispositivo/Index">
                         <i class='bx bx-sitemap'></i>
                         <span class="links_name">Dispositivo</span>
@@ -97,13 +90,15 @@
         </main>
     </div>
 
-    <dialog id="logoutModal" style="padding: 100px;">
-        <div class="text">Deseja realmente sair?</div>
-
-        <div>
-            <a onclick="document.getElementById('logoutModal').close();">Cancelar</a>
-            <a href="/Login/Logout">Confirmar</a>
-        </div>
-    </dialog>
+    <div class="logout">
+        <dialog id="logoutModal" style="padding: 80px;">
+            <div class="text" style="font-size: 25px !important;">Deseja realmente sair?</div>
+            <br />
+            <div>
+                <a class="btn" href="#" onclick="document.getElementById('logoutModal').close();" style="color: darkred; margin-right:15px;">Cancelar</a>
+                <a class="btn" href="/Login/Logout">Confirmar</a>
+            </div>
+        </dialog>
+    </div>
 </body>
 </html>

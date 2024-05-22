@@ -13,8 +13,7 @@
     <table class="table table-responsive table-hover">
         <tr>
             <th style="text-align:center">FOTO</th>
-            <th style="text-align:center">ID</th>
-            <th style="text-align:center">USERNAME</th>
+            <th style="text-align:center">USUÁRIO</th>
             <th style="text-align:center">SENHA</th>
             <th style="text-align:center">PERFIL</th>
             <th style="text-align:center">AÇÕES</th>
@@ -33,16 +32,22 @@
                     }
 
                 </td>
-                <td style="text-align:center">@usuario.Id</td>
                 <td style="text-align:center">@usuario.Usuario</td>
                 <td style="text-align:center">@usuario.Senha</td>
                 <td style="text-align:center">@usuario.Perfil</td>
-                <td style="text-align:center">
-                    <a href="/usuario/edit?id=@usuario.Id"> <span class="bx bxs-pencil"></span></a>
-                    <a href="/usuario/delete?id=@usuario.Id"> <span class="bx bxs-trash-alt"></span></a>
-                </td>
+                @if(usuario.Usuario != ViewBag.Username)
+                {
+                    <td style="text-align:center">
+                        <a href="/usuario/edit?id=@usuario.Id"> <span class="bx bxs-pencil"></span></a>
+                        <a href="/usuario/delete?id=@usuario.Id"> <span class="bx bxs-trash-alt"></span></a>
+                    </td>
+                }
+                else
+                {
+                    <td></td>
+                }
             </tr>
         }
     </table>
-    <a href="/usuario/create" class="btn btn-info">Novo Registro</a>
+    <a href="/usuario/create" class="btn btn-register">Novo Registro</a>
 </div>

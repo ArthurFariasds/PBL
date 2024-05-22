@@ -5,6 +5,7 @@ using PBL.Models;
 using PBL.DAO;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using System.Net.Http;
 
 namespace PBL.Controllers
 {
@@ -21,7 +22,7 @@ namespace PBL.Controllers
             LoginDAO usuarioDao = new LoginDAO();
 
             if (model.Usuario == null)
-                ModelState.AddModelError("Usuario", "Usuario não preenchido!");
+                ModelState.AddModelError("Usuario", "Usuário não preenchido!");
 
             if (model.Senha == null)
                 ModelState.AddModelError("Senha", "Senha não preenchida!");
@@ -30,10 +31,10 @@ namespace PBL.Controllers
                 ModelState.AddModelError("Perfil", "Escolha o perfil para o usuário!");
 
             if (model.Usuario != null && usuarioDao.UsernameExiste(model.Usuario) && operacao == "I")
-                ModelState.AddModelError("Usuario", "Nome de usuário já existente!");
+                ModelState.AddModelError("Usuario", "Nome do usuário já existente!");
 
             if (model.Senha?.Length < 4)
-                ModelState.AddModelError("Senha", "Senha deve conter mais que 4 caracteres!");
+                ModelState.AddModelError("Senha", "Senha deve conter mais do que 4 caracteres!");
 
             if (model.Imagem != null && model.Imagem.Length / 1024 / 1024 >= 2)
                 ModelState.AddModelError("Imagem", "Imagem limitada a 2 mb!");
@@ -64,12 +65,11 @@ namespace PBL.Controllers
         protected override void PreencheDadosParaView(string Operacao, UsuarioViewModel model)
         {
             base.PreencheDadosParaView(Operacao, model);
-            ViewBag.Perfil = model.Perfil;
 
-            if(!string.IsNullOrEmpty(model.Perfil))
+            if(!string.IsNullOrEmpty(model.Perfil) && model.Id == HelperControllers.GetUsuarioId(HttpContext.Session))
                 HttpContext.Session.SetString("Perfil", model.Perfil);
 
-            if (!string.IsNullOrEmpty(model.ImagemEmBase64))
+            if (!string.IsNullOrEmpty(model.ImagemEmBase64) && model.Id == HelperControllers.GetUsuarioId(HttpContext.Session))
                 HttpContext.Session.SetString("Imagem64", model.ImagemEmBase64);
         }
 

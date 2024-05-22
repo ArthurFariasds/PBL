@@ -18,6 +18,19 @@ a.navbar-brand {
     margin-bottom: 15px;*/
 }
 
+/*LOGOUT==================================================*/
+
+#logoutModal {
+    position: absolute;
+    margin-left: 35%;
+    margin-top: 15%;
+    background-color: #1b1d38;
+    border-radius: 5%;
+    color: #ffeba7;
+    font-size: medium;
+}
+
+
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;

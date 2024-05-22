@@ -12,7 +12,7 @@
     padding-left: 0 !important;
 }
 
-h1{
+h1 {
     color: #ffeba7;
     display: flex;
     justify-content: center;
@@ -26,35 +26,36 @@ h2 {
     align-items: center;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #0d0c14;
+    text-align: left;
+    border-radius: 3.2px;
+    border-radius: 20px;
+}
+
+.table th {
+    border-top: none;
+}
+
 a {
-    color: #11101D;
+    color: #ffeba7;
 }
 
     a:hover {
         color: #ff0000;
     }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-    text-align: left;
-    border-radius: 3.2px;
-    border-radius: 20px;
-}
-
 th {
-    background-color: #fbde7c;
-    text-transform: uppercase;
+    background-color: #444444;
     letter-spacing: 5px;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 900;
-    color: #000000;
 }
 
 td {
-    color: #000000;
-    font-size: 18px;
+    font-size: 20px;
 }
 
     td img {
@@ -64,16 +65,17 @@ td {
         border-radius: 50%;
     }
 
-tr:nth-child(even) {
-    background-color: #f3f8fe;
+.btn-register {
+    margin-left: 250px;
 }
-
-card{
-    margin-left:20px;
+/*============================================================*/
+card {
+    margin-left: 20px;
 }
 
 label {
     color: #ffeba7;
+    margin: 0;
 }
 
 .row {
@@ -85,7 +87,7 @@ label {
 }
 
 .card-profile {
-    margin-top:50px;
+    margin-top: 50px;
     border-right: 1px solid #dee2e6;
     padding: 10px;
     margin-bottom: 20px;
@@ -108,7 +110,7 @@ label {
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        border-radius: 50%
+        border-radius: 100%
     }
 
 
@@ -116,21 +118,7 @@ label {
         display: flex;
     }
 
-.btn-success:hover {
-    background-color: #28a745; 
-    border-color: #1e7e34;
+.btn-danger {
+    margin-top: 10px;
+    text-align: center;
 }
-
-.btn-danger:hover {
-    background-color: #dc3545;
-    border-color: #bd2130;
-}
-
-.btn-info:hover {
-    background-color: #17a2b8; 
-    border-color: #17a2b8;
-}
-
-
-
-
