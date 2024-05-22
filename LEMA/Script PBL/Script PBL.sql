@@ -207,11 +207,14 @@ END
 GO
 
 -------------------------------------------------------------------------------------------------------
-CREATE or ALTER PROCEDURE spListagemTemperatura
-AS
-BEGIN
- SELECT * FROM Dispositivo
-END
-GO
+-------------------------------------------------------------------------------------------------------
+ALTER TABLE Dispositivo ADD dataCriacao DateTime
 
+CREATE TABLE Temperatura(
+	id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    valorTemperatura DECIMAL(18,2) NOT NULL,
+	dataLeitura DATETIME,
+	idDispositivo INT NOT NULL,
+	FOREIGN KEY (IdDispositivo) REFERENCES Dispositivo(id)
+)
 
