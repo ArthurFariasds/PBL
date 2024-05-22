@@ -89,7 +89,7 @@ namespace PBL.Controllers
             LoginDAO usuarioDao = new LoginDAO();
 
             if (login.Usuario == null)
-                ModelState.AddModelError("Usuario", "Usuario não preenchido!");
+                ModelState.AddModelError("Usuario", "Usuário não preenchido!");
 
             if (login.Senha == null)
                 ModelState.AddModelError("Senha", "Senha não preenchida!");
@@ -99,7 +99,7 @@ namespace PBL.Controllers
                 LoginViewModel usuario = usuarioDao.ValidaLogin(login);
 
                 if (usuario == null)
-                    ModelState.AddModelError("Senha", "Usuario ou senha inválidos.");
+                    ModelState.AddModelError("Senha", "Usuário ou senha inválidos.");
                 else
                 {
                     HttpContext.Session.SetString("id", usuario.Id.ToString());

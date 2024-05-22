@@ -66,7 +66,11 @@ namespace PBL.Controllers
                         DAO.Insert(model);
                     else
                         DAO.Update(model);
-                    return RedirectToAction(NomeViewIndex);
+
+                    if (ViewBag.Perfil == "Administrador" && model.Id != ViewBag.IdUsuario)
+                        return RedirectToAction(NomeViewIndex);
+                    else
+                        return RedirectToAction("Index", "Home");
                 }
             }
             catch (Exception erro)

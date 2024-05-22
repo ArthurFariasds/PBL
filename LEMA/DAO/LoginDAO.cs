@@ -37,11 +37,12 @@ namespace PBL.DAO
 
         protected override SqlParameter[] CriaParametros(LoginViewModel model)
         {
-            SqlParameter[] parametros = new SqlParameter[4];
+            SqlParameter[] parametros = new SqlParameter[5];
             parametros[0] = new SqlParameter("id", HelperDAO.NullAsDbNull(model.Id));
             parametros[1] = new SqlParameter("username", model.Usuario);
             parametros[2] = new SqlParameter("senha", model.Senha);
             parametros[3] = new SqlParameter("perfil", "Padrão");
+            parametros[4] = new SqlParameter("imagem", Array.Empty<byte>());
 
             return parametros;
         }

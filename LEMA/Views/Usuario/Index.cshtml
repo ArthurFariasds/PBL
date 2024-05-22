@@ -5,6 +5,8 @@
 }
 
 <link rel="stylesheet" href="~/css/usuario.css">
+<script type="text/javascript" src="~/js/usuario.js"></script>
+
 <div class="padding-zero">
 
     <h2>Listagem de Usuários</h2>
@@ -30,12 +32,15 @@
                     {
                         <img id="imgPreview" src="data:image/jpeg;base64,@usuario.ImagemEmBase64" class="img-responsive" width="50">
                     }
-
                 </td>
                 <td style="text-align:center">@usuario.Usuario</td>
-                <td style="text-align:center">@usuario.Senha</td>
+                <td style="text-align:center">
+                    <span class="password" data-password="@usuario.Senha">*****</span>
+                    <i onclick="usuario.esconderSenha(this)" class="bx bx-show password-icon" style="cursor:pointer"></i>
+                </td>
+
                 <td style="text-align:center">@usuario.Perfil</td>
-                @if(usuario.Usuario != ViewBag.Username)
+                @if (usuario.Id != ViewBag.IdUsuario)
                 {
                     <td style="text-align:center">
                         <a href="/usuario/edit?id=@usuario.Id"> <span class="bx bxs-pencil"></span></a>

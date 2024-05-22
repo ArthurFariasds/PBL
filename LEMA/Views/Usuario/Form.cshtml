@@ -6,7 +6,16 @@
 <link rel="stylesheet" href="~/css/usuario.css">
 <script type="text/javascript" src="~/js/usuario.js"></script>
 
-<h1 class="padding-zero">Cadastro de Usuário</h1>
+@if (ViewBag.Operacao == "I")
+{
+    <h1 class="padding-zero">Cadastrar Usuário</h1>
+
+}
+else
+{
+    <h1 class="padding-zero">Editar Usuário</h1>
+}
+
 <form action="Save" method="post" enctype="multipart/form-data" class="col-md-6 padding-zero">
     <input type="hidden" value="@ViewBag.Operacao" name="operacao" />
     <br />
@@ -47,7 +56,7 @@
                     <span asp-validation-for="Senha" class="text-danger"></span>
                     <br />
                 </div>
-                @if (ViewBag.Perfil == "Administrador")
+                @if (ViewBag.Perfil == "Administrador" && Model.Id != ViewBag.IdUsuario)
                 {
                     <div class="form-group">
                         <label for="Perfil" class="control-label">Perfil</label>
@@ -58,6 +67,10 @@
                         </select>
                         <span asp-validation-for="Perfil" class="text-danger"></span>
                     </div>
+                }
+                else
+                {
+                    <input type="hidden" asp-for="Perfil" value="@Model.Perfil" />
                 }
                 <div class="form-group">
                     <br />
