@@ -20,6 +20,9 @@ namespace PBL.Controllers
             try
             {
                 var lista = DAO.Listagem();
+
+                PreencheViewBags();
+
                 return View(NomeViewIndex, lista);
             }
             catch (Exception erro)
@@ -47,6 +50,18 @@ namespace PBL.Controllers
         {
             if (GeraProximoId && Operacao == "I")
                 model.Id = DAO.ProximoId();
+        }
+        
+        protected virtual void PreencheViewBags()
+        {
+            UsuarioDAO usuarioDao = new UsuarioDAO();
+
+            UsuarioViewModel usuario = usuarioDao.Consulta(HelperControllers.GetUsuarioId(HttpContext.Session));
+            ViewBag.Perfil = usuario.Perfil;
+            ViewBag.Imagem64 = usuario.ImagemEmBase64;
+            ViewBag.Logado = HelperControllers.VerificaUserLogado(HttpContext.Session);
+            ViewBag.Username = HelperControllers.GetUsername(HttpContext.Session);
+            ViewBag.IdUsuario = HelperControllers.GetUsuarioId(HttpContext.Session);
         }
 
         public virtual IActionResult Save(T model, string Operacao)

@@ -21,9 +21,11 @@ namespace PBL.Controllers
 
         public IActionResult Index()
         {
-            UsuarioDAO u = new UsuarioDAO();
-            ViewBag.Perfil = u.ConsultaPerfil(HelperControllers.GetUsuarioId(HttpContext.Session));
-            ViewBag.Imagem64 = HelperControllers.GetImagemBase64(HttpContext.Session);
+            UsuarioDAO usuarioDao = new UsuarioDAO();
+
+            UsuarioViewModel usuario = usuarioDao.Consulta(HelperControllers.GetUsuarioId(HttpContext.Session));
+            ViewBag.Perfil = usuario.Perfil;
+            ViewBag.Imagem64 = usuario.ImagemEmBase64;
             ViewBag.Logado = HelperControllers.VerificaUserLogado(HttpContext.Session);
             ViewBag.Username = HelperControllers.GetUsername(HttpContext.Session);
             ViewBag.IdUsuario = HelperControllers.GetUsuarioId(HttpContext.Session);

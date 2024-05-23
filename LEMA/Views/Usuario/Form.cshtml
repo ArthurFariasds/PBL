@@ -23,7 +23,7 @@ else
     <div class="row">
         <div class="col-md-3 card-profile">
             <label for="Imagem" class="bx bx-plus-circle">
-                <input type="file" name="Imagem" id="Imagem" onchange="usuario.exibirImagem()" style="display: none;">
+                <input type="file" name="Imagem" id="Imagem" onchange="usuario.exibirImagem()" style="display: none;" accept="image/png, image/gif, image/jpeg">
             </label>
 
             @if (string.IsNullOrEmpty(Model.ImagemEmBase64))
