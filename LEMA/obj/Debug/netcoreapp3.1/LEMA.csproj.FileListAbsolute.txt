@@ -2113,3 +2113,4 @@ C:\Users\levim\OneDrive\Área de Trabalho\Levi\Faculdade\LP I\PBL\LEMA\obj\Debug
 C:\Users\levim\OneDrive\Área de Trabalho\Levi\Faculdade\LP I\PBL\LEMA\obj\Debug\netcoreapp3.1\LEMA.dll
 C:\Users\levim\OneDrive\Área de Trabalho\Levi\Faculdade\LP I\PBL\LEMA\obj\Debug\netcoreapp3.1\LEMA.pdb
 C:\Users\levim\OneDrive\Área de Trabalho\Levi\Faculdade\LP I\PBL\LEMA\obj\Debug\netcoreapp3.1\LEMA.genruntimeconfig.cache
+C:\Users\arthu\OneDrive\Área de Trabalho\PBL\PBL\LEMA\bin\Debug\netcoreapp3.1\System.Net.Http.Json.dll
