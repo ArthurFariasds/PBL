@@ -1,34 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\081220006\\Desktop\\PBL\\LEMA\\LEMA.csproj": {}
+    "C:\\Users\\levim\\OneDrive\\Área de Trabalho\\Levi\\Faculdade\\LP I\\PBL\\LEMA\\LEMA.csproj": {}
   },
   "projects": {
-    "C:\\Users\\081220006\\Desktop\\PBL\\LEMA\\LEMA.csproj": {
+    "C:\\Users\\levim\\OneDrive\\Área de Trabalho\\Levi\\Faculdade\\LP I\\PBL\\LEMA\\LEMA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\081220006\\Desktop\\PBL\\LEMA\\LEMA.csproj",
+        "projectUniqueName": "C:\\Users\\levim\\OneDrive\\Área de Trabalho\\Levi\\Faculdade\\LP I\\PBL\\LEMA\\LEMA.csproj",
         "projectName": "LEMA",
-        "projectPath": "C:\\Users\\081220006\\Desktop\\PBL\\LEMA\\LEMA.csproj",
-        "packagesPath": "C:\\Users\\081220006\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\081220006\\Desktop\\PBL\\LEMA\\obj\\",
+        "projectPath": "C:\\Users\\levim\\OneDrive\\Área de Trabalho\\Levi\\Faculdade\\LP I\\PBL\\LEMA\\LEMA.csproj",
+        "packagesPath": "C:\\Users\\levim\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\levim\\OneDrive\\Área de Trabalho\\Levi\\Faculdade\\LP I\\PBL\\LEMA\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\081220006\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\levim\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -58,6 +55,10 @@
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.6, )"
+            },
+            "System.Net.Http.Json": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             }
           },
           "imports": [
@@ -79,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
