@@ -1,13 +1,35 @@
-﻿@{
+﻿@model List<DispositivoViewModel>
+
+@{
     ViewData["Title"] = "Dispositivo";
 }
-@* <style>
-    section{
-        margin-left: 200px;
-    }
-</style> *@
+
 <section class="home-section">
-    <div class="text">Dispositivo</div>
+    <div class="text">Listagem Dispositivo</div>
 
+    <table class="table table-responsive table-hover">
+        <tr>
+            <th style="text-align:center">Id dispositivo</th>
+            <th style="text-align:center">Nome</th>
+            <th style="text-align:center">Descrição</th>
+            <th style="text-align:center">Data da criação</th>
+            <th style="text-align:center">Ações</th>
+        </tr>
+        @foreach (var dispositivo in Model)
+        {
+            <tr>
+                <td style="text-align:center">@dispositivo.Id</td>
+                <td style="text-align:center">@dispositivo.Nome</td>
+                <td style="text-align:center">@dispositivo.Descricao</td>
+                <td style="text-align:center">@dispositivo.DataCriacao.ToShortDateString()</td>
 
+                @* A SP TERA QUE TRAZER SOMENTE OS DISPOSITIVOS DO USUARIO ATUAL, ADMINISTRADOR PODERÁ VER TODAS - não foi feito *@
+                <td style="text-align:center">
+                    <a href="/dispositivo/edit?id=@dispositivo.Id"> <span class="bx bxs-pencil"></span></a>
+                    <a href="/dispositivo/delete?id=@dispositivo.Id"> <span class="bx bxs-trash-alt"></span></a>
+                </td>
+            </tr>
+        }
+    </table>
+    <a href="/dispositivo/create" class="btn btn-register">Novo Registro</a>
 </section>

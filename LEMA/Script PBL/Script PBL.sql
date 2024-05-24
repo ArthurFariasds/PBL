@@ -155,14 +155,17 @@ GO
 
 CREATE or ALTER PROCEDURE spInserirDispositivo
 (
- @descricao VARCHAR(50)
+ @id INT,
+ @nome VARCHAR(50),
+ @descricao VARCHAR(50),
+ @dataCriacao DATETIME
 )
 AS
 BEGIN
  INSERT INTO Dispositivo
- (descricao)
+ (descricao, nome, dataCriacao)
  VALUES
- (@descricao)
+ (@descricao, @nome, @dataCriacao)
 END
 GO
 
@@ -200,15 +203,22 @@ END
 GO
 
 CREATE or ALTER PROCEDURE spListagemDispositivos
+(
+ @tabela VARCHAR(MAX),
+ @ordem VARCHAR(MAX)
+ )
 AS
 BEGIN
- SELECT * FROM Dispositivo
+ EXEC('SELECT * FROM ' + @tabela +
+ ' ORDER BY ' + @ordem)
 END
 GO
 
--------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------
+--APÓS O TERMINO DAS ALTERAÇÕES, SUBIR PARA OS RESPECTIVOS 'CREATE TABLE' PARA GERAR TUDO AUTOMATICAMENTE COM O F5
+------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
 ALTER TABLE Dispositivo ADD dataCriacao DateTime
+ALTER TABLE Dispositivo ADD nome VARCHAR(50)
 
 CREATE TABLE Temperatura(
 	id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,

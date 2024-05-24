@@ -1,0 +1,47 @@
+﻿@model DispositivoViewModel
+
+@{
+    ViewData["Title"] = "Cadastro Dispositivo";
+}
+
+<section class="home-section">
+    <div class="text">Dispositivo</div>
+
+    <form action="Save" method="post" enctype="multipart/form-data">
+        <input type="hidden" value="@ViewBag.Operacao" name="operacao" />
+        <br />
+        <br />
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="p-3 py-5">
+                    @if (ViewBag.Operacao != "I")
+                    {
+                        <input type="hidden" name="Id" value="@Model.Id" />
+                    }
+                    <div class="form-group">
+                        <label for="Nome" class="control-label">Nome do dispositivo</label>
+                        <input type="text" Name="Nome" value="@Model.Nome" class="form-control" autocomplete="off"/>
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <label for="Descricao" class="control-label">Descrição</label>
+                        <input type="text" Name="Descricao" value="@Model.Descricao" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Descricao" class="text-danger"></span>
+                        <br />
+                    </div>
+
+                    <div class="form-group">
+                        <br />
+                        <input type="submit" class="btn" value="Criar Dispositivo" />
+                        <a href="#" onclick="history.back()" class="btn" style="color: darkred;">Cancelar</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</section>
+
