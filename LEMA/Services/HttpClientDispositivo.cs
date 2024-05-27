@@ -8,15 +8,18 @@ using PBL.Models;
 using System.Security.Policy;
 using System.Security.Cryptography.Xml;
 using static System.Net.WebRequestMethods;
+using System.Text.Json;
 
 namespace LEMA.Services
 {
     public class HttpClientDispositivo
     {
         private HttpClient client;
-        public HttpClientDispositivo(string uri = "http://{{url}}:4041")
+        private const string IP_MAQUINA = "104.41.62.207";
+        string url = $"http://{IP_MAQUINA}:4041";
+        public HttpClientDispositivo()
         {
-            client = ConfiguraHttpClient(uri);
+            client = ConfiguraHttpClient(url);
         }
 
         HttpClient ConfiguraHttpClient(string url)
@@ -27,26 +30,24 @@ namespace LEMA.Services
                 new MediaTypeWithQualityHeaderValue("application/json")); // Accept
 
             //Verificar a necessidade dos headers pra cada url declarada
-            _client.DefaultRequestHeaders.Add("Content-Type", "application/json"); // Content-Type
+            //_client.DefaultRequestHeaders.Add("Content-Type", "application/json"); // Content-Type
             _client.DefaultRequestHeaders.Add("fiware-service", "smart");
             _client.DefaultRequestHeaders.Add("fiware-servicepath", "/");
             _client.BaseAddress = new Uri(url);
             return _client;
         }
 
-        public Task SalvarDispositivoAsync(DispositivoViewModel dispositivo)
+        public Task SalvarDispositivoAsync(int id)
         {
-            //exemplo de como fazer o body: -- sujeito à alterações, não testado
             var body = new
             {
-                devices = new[] // verificar json do body, [] = lista, {} = objeto
+                devices = new[] 
                 {
                     new {
-                        //tem que adicionar os 3 digitos - temp001, Temp:001
-                        device_id = "temp" + dispositivo.Id,
-                        entity_name = "urn:ngsi-ld:Temp:" + dispositivo.Id,
+                        device_id = "temp" + id.ToString("D3"),
+                        entity_name = "urn:ngsi-ld:Temp:" + id.ToString("D3"),
                         entity_type = "Temp",
-                        protocol = "PDI-IoTA-UltraLight", // verificar protocolo
+                        protocol = "PDI-IoTA-UltraLight", 
                         transport = "MQTT",
 
                         commands = new[]
@@ -58,7 +59,7 @@ namespace LEMA.Services
                         attributes = new[]
                         {
                             new { object_id = "s", name = "state", type = "Text" },
-                            new { object_id = "l", name = "luminosity", type = "Integer" }
+                            new { object_id = "t", name = "temperature", type = "Double" }
                         }
                     }
                 }
@@ -68,7 +69,7 @@ namespace LEMA.Services
         }
 
         //O IP da URL é 1026 - url:1026/vs/registrations
-        public Task RegistrarDispositivoAsync(DispositivoViewModel dispositivo)
+        public Task RegistrarDispositivoAsync(int id)
         {
             var body = new
             {
@@ -77,27 +78,39 @@ namespace LEMA.Services
                 {
                     entities = new[]
                     {
-                        new { id = "urn:ngsi-ld:Lamp:001", type = "Lamp" }
+                        new { id = "urn:ngsi-ld:Temp:" + id.ToString("D3"), type = "Temp" }
                     },
                     attrs = new[]
                     {
-                        "on", "off" // Verificar sintaxe
+                        "on", "off" 
                     }
                 },
                 provider = new
                 {
-                    http = new { url = "http://{{url}}:4041" },
+                    http = new { url = $"http://{IP_MAQUINA}:4041" },
                     legacyForwarding = true,
                 }
             };
-
+            
             return client.PostAsJsonAsync("v2/registrations", body);
         }
 
-        public async Task<IEnumerable<DispositivoViewModel>?> ListarDispositivoAsync()
+        public RetornoDispositivo? ListarDispositivo()
         {
-            HttpResponseMessage response = await client.GetAsync("");
-            return await response.Content.ReadFromJsonAsync<IEnumerable<DispositivoViewModel>>();
+            return Task.Run(() => ListarDispositivoAsync()).Result;
         }
+
+
+        private async Task<RetornoDispositivo?> ListarDispositivoAsync()
+        {
+            HttpResponseMessage response = await client.GetAsync(url + "/iot/devices");
+            return await response.Content.ReadFromJsonAsync<RetornoDispositivo>();
+        }
+
+        public Task DeletarDispositivo(string deviceId)
+        {
+            return client.DeleteAsync(url + "/iot/devices/" + deviceId);
+        }
+
     }
 }
