@@ -6,6 +6,7 @@ namespace PBL.Models
     {
         public string Nome { get; set; }
         public string Descricao { get; set; }
+        public string IdDispositivoApi { get; set; }
         public DateTime DataCriacao { get; set; }
     }
 }

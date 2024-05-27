@@ -9,8 +9,6 @@
 
     <form action="Save" method="post" enctype="multipart/form-data">
         <input type="hidden" value="@ViewBag.Operacao" name="operacao" />
-        <br />
-        <br />
         <div class="row">
 
             <div class="col-md-6">
@@ -18,6 +16,9 @@
                     @if (ViewBag.Operacao != "I")
                     {
                         <input type="hidden" name="Id" value="@Model.Id" />
+                        <input type="hidden" name="IdDispositivoApi" value="@Model.IdDispositivoApi" />
+                        <input type="hidden" name="DataCriacao" value="@Model.DataCriacao" />
+                        <label style="color:lightblue">Criado em @Model.DataCriacao.ToShortDateString()</label>
                     }
                     <div class="form-group">
                         <label for="Nome" class="control-label">Nome do dispositivo</label>

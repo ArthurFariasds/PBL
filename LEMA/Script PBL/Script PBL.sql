@@ -158,25 +158,30 @@ CREATE or ALTER PROCEDURE spInserirDispositivo
  @id INT,
  @nome VARCHAR(50),
  @descricao VARCHAR(50),
+ @idDispositivoApi VARCHAR(50),
  @dataCriacao DATETIME
 )
 AS
 BEGIN
  INSERT INTO Dispositivo
- (descricao, nome, dataCriacao)
+ (descricao, nome, dataCriacao, idDispositivoApi)
  VALUES
- (@descricao, @nome, @dataCriacao)
+ (@descricao, @nome, @dataCriacao,@idDispositivoApi)
 END
 GO
 
 CREATE or ALTER PROCEDURE spAlterarDispositivo
 (
  @id INT,
- @descricao VARCHAR(50)
+ @nome VARCHAR(50),
+ @descricao VARCHAR(50),
+ @idDispositivoApi VARCHAR(50),
+ @dataCriacao DATETIME
 )
 AS
 BEGIN
  UPDATE Dispositivo SET
+ nome = @nome,
  descricao = @descricao
  WHERE id = @id
 END
@@ -228,3 +233,5 @@ CREATE TABLE Temperatura(
 	FOREIGN KEY (IdDispositivo) REFERENCES Dispositivo(id)
 )
 
+alter table dispositivo 
+add IdDispositivoApi varchar(50)
