@@ -8,6 +8,7 @@ namespace PBL.Models
         public int count { get; set; }
         public IList<RetornoDispositivoViewModel> devices { get; set; }
     }
+
     public class RetornoDispositivoViewModel
     {
         public string device_id { get; set; }
@@ -22,6 +23,7 @@ namespace PBL.Models
         public IList<object> static_attributes { get; set; }
         public string protocol { get; set; }
     }
+
     public class Attribute
     {
         public string object_id { get; set; }

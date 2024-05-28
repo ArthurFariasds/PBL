@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/menu.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 </head>
 <body>
     @if (ViewBag.Logado)
@@ -31,7 +35,7 @@
                     <span class="tooltip">Home</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/Dashboard/Index">
                         <i class='bx bx-pie-chart-alt-2'></i>
                         <span class="links_name">Dashboard</span>
                     </a>
