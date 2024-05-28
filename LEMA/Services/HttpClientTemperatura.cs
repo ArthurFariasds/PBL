@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System;
 using System.Net.Http.Json;
+using LEMA.Models;
 
 namespace LEMA.Services
 {
@@ -30,15 +31,15 @@ namespace LEMA.Services
             return _client;
         }
 
-        public RetornoDispositivo? GetUltimaTemperatura()
+        public RetornoTemperatura? GetUltimaTemperatura()
         {
             return Task.Run(() => GetUltimaTemperaturaAsync()).Result;
         }
 
-        private async Task<RetornoDispositivo?> GetUltimaTemperaturaAsync()
+        private async Task<RetornoTemperatura?> GetUltimaTemperaturaAsync()
         {
             HttpResponseMessage response = await client.GetAsync(url + "/STH/v1/contextEntities/type/Temp/id/urn:ngsi-ld:Temp:001/attributes/temperature?lastN=1");
-            return await response.Content.ReadFromJsonAsync<RetornoDispositivo>();
+            return await response.Content.ReadFromJsonAsync<RetornoTemperatura>();
         }
     }
 }
