@@ -1,5 +1,6 @@
-﻿var $temperaturas = [];
-const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+﻿//var initialDate = new Date();
+//initialDate.setHours(initialDate.getHours() - 3);
+//[initialDate.getTime(), 0]
 
 const onChartLoad = function () {
     const chart = this,
@@ -22,7 +23,7 @@ const onChartLoad = function () {
             series.addPoint([date, temp]);
         });
 
-    }, 1500);
+    }, 1000);
 };
 
 $(document).ready(function () {
@@ -116,7 +117,10 @@ $(document).ready(function () {
             type: 'area',
             name: 'Temperatura',
             data: []
-        }]
+        }],
+        credits: {
+            enabled: false
+        }
     });
 
     Highcharts.setOptions({
