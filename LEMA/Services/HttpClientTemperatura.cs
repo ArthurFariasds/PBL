@@ -11,7 +11,7 @@ namespace LEMA.Services
     public class HttpClientTemperatura
     {
         private HttpClient client;
-        private const string IP_MAQUINA = "104.41.62.207";
+        private const string IP_MAQUINA = "104.41.54.61";
         string url = $"http://{IP_MAQUINA}:8666";
         public HttpClientTemperatura()
         {

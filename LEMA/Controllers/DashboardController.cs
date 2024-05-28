@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LEMA.Models;
+using LEMA.Services;
+using Microsoft.AspNetCore.Mvc;
 using PBL.Controllers;
 using PBL.Models;
 
@@ -13,7 +15,10 @@ namespace LEMA.Controllers
 
         public JsonResult GetTemperatura()
         {
-            return Json("");
+            HttpClientTemperatura client = new HttpClientTemperatura();
+            RetornoTemperatura temperaturas = client.GetUltimaTemperatura();
+
+            return Json(temperaturas);
         }
     }
 }

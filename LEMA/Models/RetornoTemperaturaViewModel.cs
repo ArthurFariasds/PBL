@@ -28,11 +28,11 @@ namespace LEMA.Models
 
     public class AttributeValues
     {
-        public string Id { get; set; }
-        public DateTime ReceivedTime { get; set; }
-        public string AttributeName { get; set; }
-        public string AttributeType { get; set; }
-        public double AttributeValue { get; set; }
+        public string _id { get; set; }
+        public DateTime recvTime { get; set; }
+        public string attrName { get; set; }
+        public string attrType { get; set; }
+        public double attrValue { get; set; }
     }
 
     public class StatusCode

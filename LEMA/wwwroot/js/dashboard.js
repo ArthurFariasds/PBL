@@ -7,26 +7,22 @@ const onChartLoad = function () {
 
     setInterval(async function () {
 
-        const data = await fetch(
-            proxyUrl + 'http://104.41.62.207:8666/STH/v1/contextEntities/type/Temp/id/urn:ngsi-ld:Temp:001/attributes/temperature?lastN=1',
-            {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    "fiware-service": "smart",
-                    "fiware-servicepath": "/",
-                    'Origin': 'http://localhost:45503/',  // Replace with your server's URL
-                    'X-Requested-With': 'XMLHttpRequest'
-                }
-            }
-        ).then(response => response.json());
+        $.ajax({
+            type: 'GET',
+            url: '/Dashboard/GetTemperatura'
+        }).done(function (data) {
 
-        const chartData = data.contextResponses[0].contextElement.attributes[0].values[0];
-        let date = new Date(chartData.recvTime).getTime();
-        let temp = chartData.attrValue;
+            const chartData = data.contextResponses[0].contextElement.attributes[0].values[0];
+            let utc = new Date(chartData.recvTime);
+            utc.setHours(utc.getHours() - 3);
 
-        series.addPoint([date, temp]);
-    }, 2500);
+            let date = utc.getTime();
+            let temp = chartData.attrValue;
+
+            series.addPoint([date, temp]);
+        });
+
+    }, 1500);
 };
 
 $(document).ready(function () {
