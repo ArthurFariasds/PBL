@@ -235,3 +235,55 @@ CREATE TABLE Temperatura(
 
 alter table dispositivo 
 add IdDispositivoApi varchar(50)
+
+CREATE TABLE Empresa(
+	id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+	telefone VARCHAR(50) NOT NULL,
+	imagem VARBINARY(MAX)
+)
+
+-----------------------------
+CREATE or ALTER PROCEDURE spInserirEmpresa
+(
+ @id INT,
+ @nome VARCHAR(50),
+ @telefone VARCHAR(50),
+ @imagem VARBINARY(MAX)
+)
+AS
+BEGIN
+ INSERT INTO Empresa
+ (nome, telefone, imagem)
+ VALUES
+ (@nome, @telefone, @imagem)
+END
+GO
+
+CREATE or ALTER PROCEDURE spAlterarEmpresa
+(
+ @id INT,
+ @nome VARCHAR(50),
+ @telefone VARCHAR(50),
+ @imagem VARBINARY(MAX)
+)
+AS
+BEGIN
+ UPDATE Empresa SET
+ nome = @nome,
+ telefone = @telefone,
+ imagem = @imagem
+ WHERE id = @id
+END
+GO
+
+CREATE or ALTER PROCEDURE spListagemEmpresas
+(
+ @tabela VARCHAR(MAX),
+ @ordem VARCHAR(MAX))
+AS
+BEGIN
+ EXEC('SELECT * FROM ' + @tabela +
+ ' ORDER BY ' + @ordem)
+END
+GO
