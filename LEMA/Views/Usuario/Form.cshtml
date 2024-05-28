@@ -56,6 +56,12 @@ else
                     <span asp-validation-for="Senha" class="text-danger"></span>
                     <br />
                 </div>
+                <div>
+                    <label for="Empresa" class="control-label">Empresa</label>
+                    <select asp-for="IdEmpresa" asp-items="ViewBag.Empresa" class="form-control"> </select>
+                    <span asp-validation-for="IdEmpresa" class="text-danger"></span>
+                    <br />
+                </div>
                 @if (ViewBag.Perfil == "Administrador" && Model.Id != ViewBag.IdUsuario)
                 {
                     <div class="form-group">

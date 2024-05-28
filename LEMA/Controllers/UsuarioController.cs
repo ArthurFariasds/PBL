@@ -6,6 +6,7 @@ using PBL.DAO;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Net.Http;
+using LEMA.DAO;
 
 namespace PBL.Controllers
 {
@@ -64,6 +65,8 @@ namespace PBL.Controllers
 
         protected override void PreencheDadosParaView(string Operacao, UsuarioViewModel model)
         {
+            PreparaListaEmpresasParaCombo();
+
             base.PreencheDadosParaView(Operacao, model);
 
             if(!string.IsNullOrEmpty(model.Perfil) && model.Id == HelperControllers.GetUsuarioId(HttpContext.Session))
@@ -71,6 +74,20 @@ namespace PBL.Controllers
 
             if (!string.IsNullOrEmpty(model.ImagemEmBase64) && model.Id == HelperControllers.GetUsuarioId(HttpContext.Session))
                 HttpContext.Session.SetString("Imagem64", model.ImagemEmBase64);
+        }
+
+        private void PreparaListaEmpresasParaCombo()
+        {
+            EmpresaDAO dao = new EmpresaDAO();
+            var empresas = dao.Listagem();
+            List<SelectListItem> listaEmpresas = new List<SelectListItem>();
+            listaEmpresas.Add(new SelectListItem("Selecione uma empresa...", "0"));
+            foreach (var empresa in empresas)
+            {
+                SelectListItem item = new SelectListItem(empresa.Nome, empresa.Id.ToString());
+                listaEmpresas.Add(item);
+            }
+            ViewBag.Empresa = listaEmpresas;
         }
 
     }

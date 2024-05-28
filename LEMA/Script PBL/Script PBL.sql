@@ -10,10 +10,13 @@ CREATE TABLE Usuario (
     username VARCHAR(50) NOT NULL,
     senha VARCHAR(50) NOT NULL,
 	perfil VARCHAR(50) NOT NULL,
-	imagem VARBINARY(MAX)
+	imagem VARBINARY(MAX),
+	idEmpresa INT
 ); 
 GO 
 select * from Usuario
+insert into Usuario (username, senha, perfil) values ('admin', '1234', 'Administrador')
+
 CREATE TABLE Dispositivo (
     id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     descricao VARCHAR(50) NOT NULL
@@ -68,14 +71,15 @@ CREATE or ALTER PROCEDURE spInserirUsuario
  @username VARCHAR(50),
  @senha VARCHAR(50),
  @perfil VARCHAR(50),
- @imagem VARBINARY(MAX)
+ @imagem VARBINARY(MAX),
+ @idEmpresa INT
 )
 AS
 BEGIN
  INSERT INTO Usuario
- (username, senha, perfil, imagem)
+ (username, senha, perfil, imagem, idEmpresa)
  VALUES
- (@username, @senha, @perfil, @imagem)
+ (@username, @senha, @perfil, @imagem, @idEmpresa)
 END
 GO
 
@@ -85,7 +89,8 @@ CREATE or ALTER PROCEDURE spAlterarUsuario
  @username VARCHAR(50),
  @senha VARCHAR(50),
  @perfil VARCHAR(50),
- @imagem VARBINARY(MAX)
+ @imagem VARBINARY(MAX),
+ @idEmpresa INt
 )
 AS
 BEGIN
@@ -93,7 +98,8 @@ BEGIN
  username = @username,
  senha = @senha,
  perfil = @perfil,
- imagem = @imagem
+ imagem = @imagem,
+ idEmpresa = @idEmpresa
  WHERE id = @id
 END
 GO
@@ -136,7 +142,17 @@ BEGIN
  ' ORDER BY ' + @ordem)
 END
 GO
-
+  
+CREATE or ALTER PROCEDURE spListagemUsuarios
+(
+ @tabela VARCHAR(MAX),
+ @ordem VARCHAR(MAX))
+AS
+BEGIN
+    SELECT Usuario.*, empresa.Nome as 'Empresa' FROM   Usuario
+	left join Empresa on empresa.id  = Usuario.IdEmpresa
+END
+GO
 -------------------------------------------------------------------------------------------------------
 CREATE or ALTER PROCEDURE spAlterarImagemUsuario
 (

@@ -76,7 +76,7 @@ namespace PBL.Controllers
 
                 return RedirectToAction("Login", "Login");
             }
-            catch
+            catch(Exception erro)
             {
                 return View("Error", new ErrorViewModel());
             }
