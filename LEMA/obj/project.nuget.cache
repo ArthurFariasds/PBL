@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6OQE5+H1tXgQrNxC+eIa3HVTPRMl7g/phurSN8VmbDWYGKwdsoLTmUDlZEcKMiWTYUQnuh6GlBUAnZ6JHYG8tA==",
+  "dgSpecHash": "0XjrLDBwdRsThOPkkzyV2HVfRvSBWyzljCMhj+jPpjkyfSRy4fkaqzFFqhktkkhD6wCQQxL0H/6YUUYV6vjT3A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\arthu\\OneDrive\\Área de Trabalho\\PBL 2\\PBL\\LEMA\\LEMA.csproj",
+  "projectFilePath": "C:\\Users\\arthu\\OneDrive\\Área de Trabalho\\PBL\\PBL\\LEMA\\LEMA.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\arthu\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

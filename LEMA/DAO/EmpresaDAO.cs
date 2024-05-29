@@ -42,5 +42,19 @@ namespace LEMA.DAO
             Tabela = "Empresa";
             NomeSpListagem = "spListagemEmpresas";
         }
+
+
+        public bool EmpresaExiste(string empresa)
+        {
+            var p = new SqlParameter[]
+            {
+                 new SqlParameter("nome", empresa)
+            };
+            var tabela = HelperDAO.ExecutaProcSelect("spConsultarEmpresa", p);
+            if (tabela.Rows.Count == 0)
+                return false;
+
+            return true;
+        }
     }
 }

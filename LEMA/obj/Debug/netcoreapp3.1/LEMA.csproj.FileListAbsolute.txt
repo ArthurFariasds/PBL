@@ -2968,3 +2968,7 @@ C:\Users\arthu\OneDrive\Área de Trabalho\PBL 2\PBL\LEMA\obj\Debug\netcoreapp3.1
 C:\Users\arthu\OneDrive\Área de Trabalho\PBL 2\PBL\LEMA\obj\Debug\netcoreapp3.1\LEMA.genruntimeconfig.cache
 C:\Users\arthu\OneDrive\Área de Trabalho\PBL 2\PBL\LEMA\obj\Debug\netcoreapp3.1\Razor\Views\Empresa\Form.cshtml.g.cs
 C:\Users\arthu\OneDrive\Área de Trabalho\PBL 2\PBL\LEMA\obj\Debug\netcoreapp3.1\Razor\Views\Empresa\Index.cshtml.g.cs
+C:\Users\arthu\OneDrive\Área de Trabalho\PBL\PBL\LEMA\obj\Debug\netcoreapp3.1\Razor\Views\Dashboard\Index.cshtml.g.cs
+C:\Users\arthu\OneDrive\Área de Trabalho\PBL\PBL\LEMA\obj\Debug\netcoreapp3.1\Razor\Views\Dispositivo\Form.cshtml.g.cs
+C:\Users\arthu\OneDrive\Área de Trabalho\PBL\PBL\LEMA\obj\Debug\netcoreapp3.1\Razor\Views\Empresa\Form.cshtml.g.cs
+C:\Users\arthu\OneDrive\Área de Trabalho\PBL\PBL\LEMA\obj\Debug\netcoreapp3.1\Razor\Views\Empresa\Index.cshtml.g.cs

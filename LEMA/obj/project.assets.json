@@ -3464,11 +3464,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\arthu\\OneDrive\\Área de Trabalho\\PBL 2\\PBL\\LEMA\\LEMA.csproj",
+      "projectUniqueName": "C:\\Users\\arthu\\OneDrive\\Área de Trabalho\\PBL\\PBL\\LEMA\\LEMA.csproj",
       "projectName": "LEMA",
-      "projectPath": "C:\\Users\\arthu\\OneDrive\\Área de Trabalho\\PBL 2\\PBL\\LEMA\\LEMA.csproj",
+      "projectPath": "C:\\Users\\arthu\\OneDrive\\Área de Trabalho\\PBL\\PBL\\LEMA\\LEMA.csproj",
       "packagesPath": "C:\\Users\\arthu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\arthu\\OneDrive\\Área de Trabalho\\PBL 2\\PBL\\LEMA\\obj\\",
+      "outputPath": "C:\\Users\\arthu\\OneDrive\\Área de Trabalho\\PBL\\PBL\\LEMA\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

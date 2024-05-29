@@ -18,13 +18,20 @@ namespace LEMA.Controllers
 
         protected override void ValidaDados(EmpresaViewModel model, string operacao)
         {
-            LoginDAO EmpresaDao = new LoginDAO();
+            EmpresaDAO empresaDao = new EmpresaDAO();
+
 
             if (model.Nome == null)
-                ModelState.AddModelError("Empresa", "Empresa não preenchida!");
+                ModelState.AddModelError("Nome", "Empresa não preenchida!");
 
             if (model.Telefone == null)
                 ModelState.AddModelError("Telefone", "Telefone não preenchido!");
+
+            if (model.Telefone.Length < 14)
+                ModelState.AddModelError("Telefone", "Número de telefone inválido!");
+
+            if (model.Nome != null && empresaDao.EmpresaExiste(model.Nome) && operacao == "I")
+                ModelState.AddModelError("Nome", "Nome da empresa já existente!");
 
             if (model.Imagem != null && model.Imagem.Length / 1024 / 1024 >= 2)
                 ModelState.AddModelError("Imagem", "Imagem limitada a 2 mb!");
