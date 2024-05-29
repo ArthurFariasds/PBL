@@ -303,3 +303,13 @@ BEGIN
  ' ORDER BY ' + @ordem)
 END
 GO
+
+CREATE or ALTER PROCEDURE spConsultarEmpresa
+(
+ @nome VARCHAR(50)
+)
+AS
+BEGIN
+ SELECT * FROM Empresa WHERE nome = @nome
+END
+GO
