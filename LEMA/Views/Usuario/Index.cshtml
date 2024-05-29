@@ -46,7 +46,7 @@
                 {
                     <td style="text-align:center">
                         <a href="/usuario/edit?id=@usuario.Id"> <span class="bx bxs-pencil"></span></a>
-                        <a href="/usuario/delete?id=@usuario.Id"> <span class="bx bxs-trash-alt"></span></a>
+                        <a onclick="usuario.confirma(@usuario.Id)"> <span class="bx bxs-trash-alt"></span></a>
                     </td>
                 }
                 else
@@ -58,3 +58,15 @@
     </table>
     <a href="/usuario/create" class="btn btn-register">Novo Registro</a>
 </div>
+<div class="delete">
+    <dialog id="deleteModal" style="padding: 40px;">
+        <div> <i class="bx bx-alarm-exclamation" style="font-size: 100px; margin-left: 32%;"> </i> </div>
+        <div class="text" style="font-size: 25px !important;">Deseja realmente excluir?</div>
+        <br />
+        <div>
+            <a class="btn" href="#" onclick="document.getElementById('deleteModal').close();" style="color: darkred; margin-left:7%;">Cancelar</a>
+            <a class="btn confirm-delete" href="#">Confirmar</a>
+        </div>
+    </dialog>
+</div>
+

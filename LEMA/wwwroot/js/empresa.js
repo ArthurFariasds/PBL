@@ -34,8 +34,16 @@ var empresa = function () {
         };
     }
 
+    var confirma = function (usuarioId) {
+        let modal = document.getElementById('deleteModal');
+        let confirmLink = modal.querySelector('.confirm-delete');
+        confirmLink.href = '/empresa/delete?id=' + usuarioId;
+        modal.showModal();
+    };
+
     return {
         exibirImagem: exibirImagem,
+        confirma: confirma,
     }
 }();
 

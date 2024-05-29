@@ -29,7 +29,17 @@ a.navbar-brand {
     color: #ffeba7;
     font-size: medium;
 }
+/*DELETE==================================================*/
 
+#deleteModal {
+    position: absolute;
+    margin-left: 35%;
+    margin-top: 15%;
+    background-color: #4a0101;
+    border-radius: 5%;
+    color: #ffeba7;
+    font-size: medium;
+}
 
 /* Provide sufficient contrast against white background */
 a {

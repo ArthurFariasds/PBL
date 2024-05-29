@@ -3,17 +3,22 @@
 @{
     ViewData["Title"] = "Dispositivo";
 }
+<link rel="stylesheet" href="~/css/usuario.css">
+<link rel="stylesheet" href="~/css/site.css">
+<script type="text/javascript" src="~/js/dispositivo.js"></script>
 
-<section class="home-section">
-    <div class="text">Listagem Dispositivo</div>
+<div class="padding-zero">
 
+    <h2>Listagem Dispositivo</h2>
+    <br />
+    <br />
     <table class="table table-responsive table-hover">
         <tr>
-            <th style="text-align:center">Id dispositivo</th>
-            <th style="text-align:center">Nome</th>
-            <th style="text-align:center">Descrição</th>
-            <th style="text-align:center">Data da criação</th>
-            <th style="text-align:center">Ações</th>
+            <th style="text-align:center">ID</th>
+            <th style="text-align:center">NOME</th>
+            <th style="text-align:center">DESCRIÇÃO</th>
+            <th style="text-align:center">DATA DE CRIAÇÃO</th>
+            <th style="text-align:center">AÇÕES</th>
         </tr>
         @foreach (var dispositivo in Model)
         {
@@ -26,10 +31,21 @@
                 @* A SP TERA QUE TRAZER SOMENTE OS DISPOSITIVOS DO USUARIO ATUAL, ADMINISTRADOR PODERÁ VER TODAS - não foi feito *@
                 <td style="text-align:center">
                     <a href="/dispositivo/edit?id=@dispositivo.Id"> <span class="bx bxs-pencil"></span></a>
-                    <a href="/dispositivo/delete?id=@dispositivo.Id"> <span class="bx bxs-trash-alt"></span></a>
+                    <a onclick="dispositivo.confirma(@dispositivo.Id)"> <span class="bx bxs-trash-alt"></span></a>
                 </td>
             </tr>
         }
     </table>
     <a href="/dispositivo/create" class="btn btn-register">Novo Registro</a>
-</section>
+</div>
+<div class="delete">
+    <dialog id="deleteModal" style="padding: 40px;">
+        <div> <i class="bx bx-alarm-exclamation" style="font-size: 100px; margin-left: 32%;"> </i> </div>
+        <div class="text" style="font-size: 25px !important;">Deseja realmente excluir?</div>
+        <br />
+        <div>
+            <a class="btn" href="#" onclick="document.getElementById('deleteModal').close();" style="color: darkred; margin-left:7%;">Cancelar</a>
+            <a class="btn confirm-delete" href="#">Confirmar</a>
+        </div>
+    </dialog>
+</div>

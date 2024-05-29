@@ -39,11 +39,11 @@ table {
     border-top: none;
 }
 
-a {
+.bx {
     color: #ffeba7;
 }
 
-    a:hover {
+    .bx:hover {
         color: #ff0000;
     }
 
@@ -122,3 +122,4 @@ label {
     margin-top: 10px;
     text-align: center;
 }
+    

@@ -24,9 +24,17 @@ var usuario = function () {
         }
     };
 
+    var confirma = function (usuarioId) {
+        let modal = document.getElementById('deleteModal');
+        let confirmLink = modal.querySelector('.confirm-delete');
+        confirmLink.href = '/usuario/delete?id=' + usuarioId;
+        modal.showModal();
+    };
+
     return {
         exibirImagem: exibirImagem,
         esconderSenha: esconderSenha,
+        confirma: confirma,
     }
 }();
 

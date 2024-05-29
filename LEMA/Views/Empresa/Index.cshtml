@@ -5,6 +5,7 @@
 }
 
 <link rel="stylesheet" href="~/css/usuario.css">
+<link rel="stylesheet" href="~/css/site.css">
 <script type="text/javascript" src="~/js/empresa.js"></script>
 
 <div class="padding-zero">
@@ -36,11 +37,22 @@
                 <td style="text-align:center">@empresa.Telefone</td>
                 <td style="text-align:center">
                     <a href="/empresa/edit?id=@empresa.Id"> <span class="bx bxs-pencil"></span></a>
-                    <a href="/empresa/delete?id=@empresa.Id"> <span class="bx bxs-trash-alt"></span></a>
+                    <a onclick="empresa.confirma(@empresa.Id)"> <span class="bx bxs-trash-alt"></span></a>
                 </td>
 
             </tr>
         }
     </table>
     <a href="/empresa/create" class="btn btn-register">Novo Registro</a>
+</div>
+<div class="delete">
+    <dialog id="deleteModal" style="padding: 40px;">
+        <div> <i class="bx bx-alarm-exclamation" style="font-size: 100px; margin-left: 32%;"> </i> </div>
+        <div class="text" style="font-size: 25px !important;">Deseja realmente excluir?</div>
+        <br />
+        <div>
+            <a class="btn" href="#" onclick="document.getElementById('deleteModal').close();" style="color: darkred; margin-left:7%;">Cancelar</a>
+            <a class="btn confirm-delete" href="#">Confirmar</a>
+        </div>
+    </dialog>
 </div>
