@@ -5,63 +5,65 @@
 <link rel="stylesheet" href="~/css/usuario.css">
 <script type="text/javascript" src="~/js/empresa.js"></script>
 
-@if (ViewBag.Operacao == "I")
-{
-    <h1 class="padding-zero">Cadastrar Empresa</h1>
+<section class="home-section">
+    @if (ViewBag.Operacao == "I")
+    {
+        <h1 class="text">Cadastrar Empresa</h1>
 
-}
-else
-{
-    <h1 class="padding-zero">Editar Empresa</h1>
-}
+    }
+    else
+    {
+        <h1 class="text">Editar Empresa</h1>
+    }
 
-<form action="Save" method="post" enctype="multipart/form-data" class="col-md-6 padding-zero">
-    <input type="hidden" value="@ViewBag.Operacao" name="operacao" />
-    <br />
-    <br />
-    <div class="row">
-        <div class="col-md-3 card-profile">
-            <label for="Imagem" class="bx bx-plus-circle">
-                <input type="file" name="Imagem" id="Imagem" onchange="empresa.exibirImagem()" style="display: none;" accept="image/png, image/gif, image/jpeg">
-            </label>
+    <form action="Save" method="post" enctype="multipart/form-data" class="col-md-6">
+        <input type="hidden" value="@ViewBag.Operacao" name="operacao" />
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-md-3 card-profile">
+                <label for="Imagem" class="bx bx-plus-circle">
+                    <input type="file" name="Imagem" id="Imagem" onchange="empresa.exibirImagem()" style="display: none;" accept="image/png, image/gif, image/jpeg">
+                </label>
 
-            @if (string.IsNullOrEmpty(Model.ImagemEmBase64))
-            {
-                <img id="imgPreview" src="~/img/Company-Icon.png" class="img-responsive img-thumbnail" width="100">
-            }
-            else
-            {
-                <img id="imgPreview" src="data:image/jpeg;base64,@Model.ImagemEmBase64" class="img-responsive img-thumbnail" width="100">
-            }
-            <br />
-            <span asp-validation-for="Imagem" class="text-danger"></span>
-
-        </div>
-        <div class="col-md-9">
-            <div class="p-3 py-5">
-                @if (ViewBag.Operacao != "I")
+                @if (string.IsNullOrEmpty(Model.ImagemEmBase64))
                 {
-                    <input type="hidden" name="Id" value="@Model.Id" />
+                    <img id="imgPreview" src="~/img/Company-Icon.png" class="img-responsive img-thumbnail" width="100">
                 }
-                <div class="form-group">
-                    <label for="Empresa" class="control-label">Empresa</label>
-                    <input type="text" Name="Nome" value="@Model.Nome" class="form-control" />
-                    <span asp-validation-for="Nome" class="text-danger"></span>
-                    <br />
-                </div>
-                <div class="form-group">
-                    <label for="Telefone" class="control-label">Telefone</label>
-                    <input type="text" id="Telefone" name="Telefone" value="@Model.Telefone" class="form-control" />
-                    <span asp-validation-for="Telefone" class="text-danger"></span>
-                    <br />
-                </div>
-                <div class="form-group">
-                    <br />
-                    <input type="submit" class="btn" value="Salvar dados" />
-                    <a href="#" onclick="history.back()" class="btn" style="color: darkred;">Cancelar</a>
+                else
+                {
+                    <img id="imgPreview" src="data:image/jpeg;base64,@Model.ImagemEmBase64" class="img-responsive img-thumbnail" width="100">
+                }
+                <br />
+                <span asp-validation-for="Imagem" class="text-danger"></span>
 
+            </div>
+            <div class="col-md-9">
+                <div class="p-3 py-5">
+                    @if (ViewBag.Operacao != "I")
+                    {
+                        <input type="hidden" name="Id" value="@Model.Id" />
+                    }
+                    <div class="form-group">
+                        <label for="Empresa" class="control-label">Empresa</label>
+                        <input type="text" Name="Nome" value="@Model.Nome" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <label for="Telefone" class="control-label">Telefone</label>
+                        <input type="text" id="Telefone" name="Telefone" value="@Model.Telefone" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Telefone" class="text-danger"></span>
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <br />
+                        <input type="submit" class="btn" value="Salvar dados" />
+                        <a href="#" onclick="history.back()" class="btn" style="color: darkred;">Cancelar</a>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
+</section>

@@ -12,13 +12,6 @@
     padding-left: 0 !important;
 }
 
-h1 {
-    color: #ffeba7;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 h2 {
     color: #ffeba7;
     display: flex;
@@ -26,24 +19,26 @@ h2 {
     align-items: center;
 }
 
-table {
-    width: 100%;
+.table {
+    width: 90%;
     border-collapse: collapse;
     background-color: #0d0c14;
     text-align: left;
-    border-radius: 3.2px;
     border-radius: 20px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.table th {
-    border-top: none;
-}
+    .table th {
+        border-top: none;
+    }
 
-.bx {
+.icon-action {
     color: #ffeba7;
 }
 
-    .bx:hover {
+    .icon-action:hover {
         color: #ff0000;
     }
 
@@ -66,7 +61,7 @@ td {
     }
 
 .btn-register {
-    margin-left: 38%;
+    margin-left: 44%;
 }
 /*============================================================*/
 card {
@@ -84,7 +79,15 @@ label {
     border: 2px solid #ffeba7;
     padding: 20px;
     border-radius: 10px;
+    margin-left: 20%;
+    transition: all 0.5s ease;
 }
+
+.menu-aberto .row {
+    margin-left: 0;
+    transition: all 0.5s ease;
+}
+
 
 .card-profile {
     margin-top: 50px;
@@ -122,4 +125,3 @@ label {
     margin-top: 10px;
     text-align: center;
 }
-    

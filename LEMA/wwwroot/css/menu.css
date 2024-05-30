@@ -8,7 +8,7 @@
 }
 
 .menu-aberto {
-    padding-left: 200px;
+    padding-left: 250px;
 }
 
 .icon {
@@ -305,11 +305,11 @@
 }
 
     .home-section .text {
-        display: inline-block;
-        color: #fff;
-        font-size: 25px;
-        font-weight: 500;
-        margin: 18px
+        color: #ffeba7;
+        display: flex;
+        margin-top: 2%;
+        justify-content: center;
+        align-items: center;
     }
 
 .sidebar li .profile-details a {

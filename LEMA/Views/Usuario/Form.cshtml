@@ -6,17 +6,19 @@
 <link rel="stylesheet" href="~/css/usuario.css">
 <script type="text/javascript" src="~/js/usuario.js"></script>
 
+<section class="home-section">
+
 @if (ViewBag.Operacao == "I")
 {
-    <h1 class="padding-zero">Cadastrar Usuário</h1>
+    <h1 class="text">Cadastrar Usuário</h1>
 
 }
 else
 {
-    <h1 class="padding-zero">Editar Usuário</h1>
+    <h1>Editar Usuário</h1>
 }
 
-<form action="Save" method="post" enctype="multipart/form-data" class="col-md-6 padding-zero">
+<form action="Save" method="post" enctype="multipart/form-data" class="col-md-6">
     <input type="hidden" value="@ViewBag.Operacao" name="operacao" />
     <br />
     <br />
@@ -46,13 +48,13 @@ else
                 }
                 <div class="form-group">
                     <label for="Usuario" class="control-label">Usuário</label>
-                    <input type="text" Name="Usuario" value="@Model.Usuario" class="form-control" />
+                        <input type="text" Name="Usuario" value="@Model.Usuario" class="form-control" autocomplete="off"/>
                     <span asp-validation-for="Usuario" class="text-danger"></span>
                     <br />
                 </div>
                 <div class="form-group">
                     <label for="Senha" class="control-label">Senha</label>
-                    <input type="text" Name="Senha" value="@Model.Senha" class="form-control" />
+                        <input type="text" Name="Senha" value="@Model.Senha" class="form-control" autocomplete="off" />
                     <span asp-validation-for="Senha" class="text-danger"></span>
                     <br />
                 </div>
@@ -88,5 +90,5 @@ else
         </div>
     </div>
 </form>
-
+</section>
 
