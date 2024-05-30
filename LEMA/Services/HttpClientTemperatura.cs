@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System;
 using System.Net.Http.Json;
 using LEMA.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LEMA.Services
 {
@@ -40,6 +42,61 @@ namespace LEMA.Services
         {
             HttpResponseMessage response = await client.GetAsync(url + "/STH/v1/contextEntities/type/Temp/id/urn:ngsi-ld:Temp:001/attributes/temperature?lastN=1");
             return await response.Content.ReadFromJsonAsync<RetornoTemperatura>();
+        }
+        public async Task<List<TemperaturaViewModel>> GetTemperatura(string deviceId, DateTime? dateFrom = null, int hLimit = 100)
+        {
+            var allData = new List<TemperaturaViewModel>();
+            bool moreData = true;
+            DateTime? ultimaData = dateFrom;
+            int lastN = 100;
+            int hOffset = 0;
+            while (moreData)
+            {
+                var queryParams = new List<string>
+                {
+                    $"lastN={lastN}",
+                    $"hOffset={hOffset}"
+                };
+
+                if (ultimaData.HasValue)
+                {
+                    queryParams.Add($"dateFrom={ultimaData.Value.ToString("yyyy-MM-ddTHH:mm:ss.fff")}");
+                    DateTime? proximoMes = ultimaData.Value.AddDays(30);
+                    queryParams.Add($"dateTo={proximoMes.Value.ToString("yyyy-MM-ddTHH:mm:ss.fff")}");
+                }
+                if (hLimit > 0)
+                    queryParams.Add($"hLimit={hLimit}");
+
+                string queryString = string.Join("&", queryParams);
+                var response = await client.GetAsync(url + $"/STH/v1/contextEntities/type/Temp/id/urn:ngsi-ld:{deviceId}/attributes/temperature?{queryString}");
+                response.EnsureSuccessStatusCode();
+
+                var content = await response.Content.ReadFromJsonAsync<RetornoTemperatura>();
+
+                if (content.ContextResponses[0].ContextElement.Attributes[0].Values.Count() == 0)
+                {
+                    moreData = false;
+                }
+                else
+                {
+                    foreach (AttributeValues values in content.ContextResponses[0].ContextElement.Attributes[0].Values)
+                    {
+                        allData.Add(new TemperaturaViewModel
+                        {
+                            ValorTemperatura = values.attrValue,
+                            DataLeitura = values.recvTime.Value,
+                            IdDispositivo = 1
+                        });
+                    }
+                    hOffset += hLimit;
+
+                    var lastRecord = content.ContextResponses[0].ContextElement.Attributes[0].Values.Last();
+                    ultimaData = lastRecord.recvTime ?? ultimaData;
+                    ultimaData = ultimaData.Value.AddSeconds(1);
+                }
+            }
+
+            return allData;
         }
     }
 }

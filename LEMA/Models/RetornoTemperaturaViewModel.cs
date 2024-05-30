@@ -29,7 +29,7 @@ namespace LEMA.Models
     public class AttributeValues
     {
         public string _id { get; set; }
-        public DateTime recvTime { get; set; }
+        public DateTime? recvTime { get; set; }
         public string attrName { get; set; }
         public string attrType { get; set; }
         public double attrValue { get; set; }
