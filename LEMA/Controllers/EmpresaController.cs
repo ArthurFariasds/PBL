@@ -21,13 +21,12 @@ namespace LEMA.Controllers
             EmpresaDAO empresaDao = new EmpresaDAO();
 
 
-            if (model.Nome == null)
+            if (string.IsNullOrEmpty(model.Nome))
                 ModelState.AddModelError("Nome", "Empresa não preenchida!");
 
-            if (model.Telefone == null)
+            if (string.IsNullOrEmpty(model.Telefone))
                 ModelState.AddModelError("Telefone", "Telefone não preenchido!");
-
-            if (model.Telefone.Length < 14)
+            else if (model.Telefone.Length < 14)
                 ModelState.AddModelError("Telefone", "Número de telefone inválido!");
 
             if (model.Nome != null && empresaDao.EmpresaExiste(model.Nome) && operacao == "I")

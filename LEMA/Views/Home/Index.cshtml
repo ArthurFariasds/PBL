@@ -1,7 +1,103 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Sobre";
 }
 
+<link rel="stylesheet" href="~/css/sobre.css">
+
+
 <section class="home-section">
-    <div class="text">Dashboard</div>
+
+    <div class="hero-text">
+        <h1 class="text-white mb-4">
+            BEM-VINDO AO <br /> LEMA
+        </h1>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="owl-features owl-carousel" style="position: relative; z-index: 5;">
+                    <a href="/Home/Index">
+                        <div class="item">
+                            <div class="thumb box-icon">
+                                <i class='bx bxs-home'></i>
+                                <div class="hover-effect">
+                                    <div class="content">
+                                        <h4>Home</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/Dashboard/Index">
+                        <div class="item">
+                            <div class="thumb box-icon">
+                                <i class='bx bx-pie-chart-alt-2'></i>
+                                <div class="hover-effect">
+                                    <div class="content">
+                                        <h4>Dashboard</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/Dispositivo/Index">
+                        <div class="item">
+                            <div class="thumb box-icon">
+                                <i class='bx bx-sitemap'></i>
+                                <div class="hover-effect">
+                                    <div class="content">
+                                        <h4>Dispositivo</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/Sobre/Index">
+                        <div class="item">
+                            <div class="thumb box-icon">
+                                <i class='bx bxs-bulb'></i>
+                                <div class="hover-effect">
+                                    <div class="content">
+                                        <h4>Sobre</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    @if (ViewBag.Perfil == "Administrador")
+                    {
+                        <a href="/Usuario/Index">
+                            <div class="item">
+                                <div class="thumb box-icon">
+                                    <i class='bx bxs-user-account'></i>
+                                    <div class="hover-effect">
+                                        <div class="content">
+                                            <h4>Registro</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="/Empresa/Index">
+                            <div class="item">
+                                <div class="thumb box-icon">
+                                    <i class='bx bxs-buildings'></i>
+                                    <div class="hover-effect">
+                                        <div class="content">
+                                            <h4>Empresas</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
 </section>

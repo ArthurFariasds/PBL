@@ -6,7 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\css\bootstrap-icons.css" />
+    <Content Remove="wwwroot\css\bootstrap.min.css" />
     <Content Remove="wwwroot\css\cadastro.css" />
+    <Content Remove="wwwroot\css\templatemo-leadership-event.css" />
+    <Content Remove="wwwroot\img\graficos.png" />
+    <Content Remove="wwwroot\img\IOT.png" />
+    <Content Remove="wwwroot\img\suporte.png" />
   </ItemGroup>
 
   <ItemGroup>

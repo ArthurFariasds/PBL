@@ -8,7 +8,7 @@
 }
 
 .menu-aberto {
-    padding-left: 250px;
+    padding-left: 173px;
 }
 
 .icon {
@@ -311,6 +311,7 @@
         justify-content: center;
         align-items: center;
     }
+
 
 .sidebar li .profile-details a {
     display: none;

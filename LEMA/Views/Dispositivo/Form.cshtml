@@ -17,7 +17,7 @@
     {
         <h1 class="text">Editar Dispositivo</h1>
     }
-    <form action="Save" method="post" enctype="multipart/form-data" class="col-md-6">
+    <form action="Save" method="post" enctype="multipart/form-data" class="form-container">
         <input type="hidden" value="@ViewBag.Operacao" name="operacao" />
         <br />
         <br />
@@ -32,13 +32,13 @@
                         <label style="color:lightblue">Criado em @Model.DataCriacao.ToShortDateString()</label>
                     }
                     <div class="form-group">
-                        <label for="Nome" class="control-label">Nome do dispositivo</label>
+                        <label for="Nome" class="control-label">Nome do dispositivo <span class="mandatory"> *</span></label>
                         <input type="text" Name="Nome" value="@Model.Nome" class="form-control" style="width: 130%;" autocomplete="off" />
                         <span asp-validation-for="Nome" class="text-danger"></span>
                         <br />
                     </div>
                     <div class="form-group">
-                        <label for="Descricao" class="control-label">Descrição</label>
+                        <label for="Descricao" class="control-label">Descrição <span class="mandatory"> *</span></label>
                         <input type="text" Name="Descricao" value="@Model.Descricao" class="form-control" style="width: 130%;" autocomplete="off" />
                         <span asp-validation-for="Descricao" class="text-danger"></span>
                         <br />

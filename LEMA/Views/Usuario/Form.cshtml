@@ -7,88 +7,85 @@
 <script type="text/javascript" src="~/js/usuario.js"></script>
 
 <section class="home-section">
+    @if (ViewBag.Operacao == "I")
+    {
+        <h1 class="text">Cadastrar Usuário</h1>
+    }
+    else
+    {
+        <h1>Editar Usuário</h1>
+    }
 
-@if (ViewBag.Operacao == "I")
-{
-    <h1 class="text">Cadastrar Usuário</h1>
-
-}
-else
-{
-    <h1>Editar Usuário</h1>
-}
-
-<form action="Save" method="post" enctype="multipart/form-data" class="col-md-6">
-    <input type="hidden" value="@ViewBag.Operacao" name="operacao" />
-    <br />
-    <br />
-    <div class="row">
-        <div class="col-md-3 card-profile">
-            <label for="Imagem" class="bx bx-plus-circle">
-                <input type="file" name="Imagem" id="Imagem" onchange="usuario.exibirImagem()" style="display: none;" accept="image/png, image/gif, image/jpeg">
-            </label>
-
-            @if (string.IsNullOrEmpty(Model.ImagemEmBase64))
-            {
-                <img id="imgPreview" src="~/img/Profile-Icon.png" class="img-responsive img-thumbnail" width="100">
-            }
-            else
-            {
-                <img id="imgPreview" src="data:image/jpeg;base64,@Model.ImagemEmBase64" class="img-responsive img-thumbnail" width="100">
-            }
+    <div class="center-form">
+        <form action="Save" method="post" enctype="multipart/form-data" class="form-container">
+            <input type="hidden" value="@ViewBag.Operacao" name="operacao" />
             <br />
-            <span asp-validation-for="Imagem" class="text-danger"></span>
+            <br />
+            <div class="row">
+                <div class="col-md-3 card-profile">
+                    <label for="Imagem" class="bx bx-plus-circle">
+                        <input type="file" name="Imagem" id="Imagem" onchange="usuario.exibirImagem()" style="display: none;" accept="image/png, image/gif, image/jpeg">
+                    </label>
 
-        </div>
-        <div class="col-md-9">
-            <div class="p-3 py-5">
-                @if (ViewBag.Operacao != "I")
-                {
-                    <input type="hidden" name="Id" value="@Model.Id" />
-                }
-                <div class="form-group">
-                    <label for="Usuario" class="control-label">Usuário</label>
-                        <input type="text" Name="Usuario" value="@Model.Usuario" class="form-control" autocomplete="off"/>
-                    <span asp-validation-for="Usuario" class="text-danger"></span>
+                    @if (string.IsNullOrEmpty(Model.ImagemEmBase64))
+                    {
+                        <img id="imgPreview" src="~/img/Profile-Icon.png" class="img-responsive img-thumbnail" width="100">
+                    }
+                    else
+                    {
+                        <img id="imgPreview" src="data:image/jpeg;base64,@Model.ImagemEmBase64" class="img-responsive img-thumbnail" width="100">
+                    }
                     <br />
+                    <span asp-validation-for="Imagem" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label for="Senha" class="control-label">Senha</label>
-                        <input type="text" Name="Senha" value="@Model.Senha" class="form-control" autocomplete="off" />
-                    <span asp-validation-for="Senha" class="text-danger"></span>
-                    <br />
-                </div>
-                @if (ViewBag.Perfil == "Administrador" && Model.Id != ViewBag.IdUsuario)
-                {
-                    <div>
-                        <label for="Empresa" class="control-label">Empresa</label>
-                        <select asp-for="IdEmpresa" asp-items="ViewBag.Empresa" class="form-control"> </select>
-                        <span asp-validation-for="IdEmpresa" class="text-danger"></span>
-                        <br />
+                <div class="col-md-9">
+                    <div class="p-3 py-5">
+                        @if (ViewBag.Operacao != "I")
+                        {
+                            <input type="hidden" name="Id" value="@Model.Id" />
+                        }
+                        <div class="form-group">
+                            <label for="Usuario" class="control-label">Usuário <span class="mandatory"> *</span></label>
+                            <input type="text" Name="Usuario" value="@Model.Usuario" class="form-control" autocomplete="off" />
+                            <span asp-validation-for="Usuario" class="text-danger"></span>
+                            <br />
+                        </div>
+                        <div class="form-group">
+                            <label for="Senha" class="control-label">Senha <span class="mandatory"> *</span></label>
+                            <input type="text" Name="Senha" value="@Model.Senha" class="form-control" autocomplete="off" />
+                            <span asp-validation-for="Senha" class="text-danger"></span>
+                            <br />
+                        </div>
+                        @if (ViewBag.Perfil == "Administrador" && Model.Id != ViewBag.IdUsuario)
+                        {
+                            <div>
+                                <label for="Empresa" class="control-label">Empresa</label>
+                                <select asp-for="IdEmpresa" asp-items="ViewBag.Empresa" class="form-control"> </select>
+                                <span asp-validation-for="IdEmpresa" class="text-danger"></span>
+                                <br />
+                            </div>
+                            <div class="form-group">
+                                <label for="Perfil" class="control-label">Perfil <span class="mandatory"> *</span></label>
+                                <select asp-for="Perfil" class="form-control">
+                                    <option value="">Selecione...</option>
+                                    <option value="Padrão">Padrão</option>
+                                    <option value="Administrador">Administrador</option>
+                                </select>
+                                <span asp-validation-for="Perfil" class="text-danger"></span>
+                            </div>
+                        }
+                        else
+                        {
+                            <input type="hidden" asp-for="Perfil" value="@Model.Perfil" />
+                        }
+                        <div class="form-group">
+                            <br />
+                            <input type="submit" class="btn" value="Salvar dados" />
+                            <a href="#" onclick="history.back()" class="btn" style="color: darkred;">Cancelar</a>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="Perfil" class="control-label">Perfil</label>
-                        <select asp-for="Perfil" class="form-control">
-                            <option value="">Selecione...</option>
-                            <option value="Padrão">Padrão</option>
-                            <option value="Administrador">Administrador</option>
-                        </select>
-                        <span asp-validation-for="Perfil" class="text-danger"></span>
-                    </div>
-                }
-                else
-                {
-                    <input type="hidden" asp-for="Perfil" value="@Model.Perfil" />
-                }
-                <div class="form-group">
-                    <br />
-                    <input type="submit" class="btn" value="Salvar dados" />
-                    <a href="#" onclick="history.back()" class="btn" style="color: darkred;">Cancelar</a>
-
                 </div>
             </div>
-        </div>
+        </form>
     </div>
-</form>
 </section>
-
