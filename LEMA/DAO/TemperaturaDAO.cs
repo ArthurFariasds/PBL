@@ -17,13 +17,72 @@ namespace LEMA.DAO
             DateTime ultimaDataLeitura = this.Listagem().Last().DataLeitura;
 
             HttpClientTemperatura cliente = new HttpClientTemperatura();
-
-            List<TemperaturaViewModel> retornoTemperatura = await cliente.GetTemperatura("Temp:001", ultimaDataLeitura);
-
-            foreach (TemperaturaViewModel temperatura in retornoTemperatura)
+            try
             {
-                Insert(temperatura);
+                List<TemperaturaViewModel> retornoTemperatura = await cliente.GetTemperatura("Temp:001", ultimaDataLeitura);
+
+                foreach (TemperaturaViewModel temperatura in retornoTemperatura)
+                {
+                    temperatura.DataLeitura = temperatura.DataLeitura.AddHours(-4);
+                    Insert(temperatura);
+                }
+
             }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
+        public HistoricoViewModel BuscarHistorico(HistoricoViewModel filtro)
+        {
+            HistoricoViewModel retorno = new HistoricoViewModel();
+
+            List<TemperaturaViewModel> listaTemperaturas = base.Listagem().OrderBy(o => o.DataLeitura).ToList();
+
+            if (filtro.DataInicio.HasValue)
+                listaTemperaturas = listaTemperaturas.Where(xs => xs.DataLeitura >= filtro.DataInicio.Value).ToList();
+
+            if (filtro.DataFim.HasValue)
+                listaTemperaturas = listaTemperaturas.Where(xs => xs.DataLeitura <= filtro.DataFim.Value).ToList();
+
+            if (filtro.TemperaturaInicial.HasValue)
+                listaTemperaturas = listaTemperaturas.Where(xs => xs.ValorTemperatura >= filtro.TemperaturaInicial.Value).ToList();
+
+            if (filtro.TemperaturaFinal.HasValue)
+                listaTemperaturas = listaTemperaturas.Where(xs => xs.ValorTemperatura <= filtro.TemperaturaFinal.Value).ToList();
+
+            retorno.MaioresTemperaturas = new List<TemperaturaViewModel>();
+            retorno.MenoresTemperaturas = new List<TemperaturaViewModel>();
+            retorno.MediasDasTemperaturas = new List<RetornoMediaTemperaturaViewModel>();
+
+            retorno.MaioresTemperaturas = listaTemperaturas.GroupBy(g => g.DataLeitura.Date)
+                                                           .Select(g => new TemperaturaViewModel
+                                                           {
+                                                               DataLeitura = g.Key,
+                                                               ValorTemperatura = g.Max(t => t.ValorTemperatura)
+                                                           })
+                                                           .ToList();
+
+            retorno.MenoresTemperaturas = listaTemperaturas.GroupBy(g => g.DataLeitura.Date)
+                                                           .Select(g => new TemperaturaViewModel
+                                                           {
+                                                               DataLeitura = g.Key,
+                                                               ValorTemperatura = g.Min(t => t.ValorTemperatura)
+                                                           })
+                                                           .ToList();
+
+            retorno.MediasDasTemperaturas = listaTemperaturas.GroupBy(g => g.DataLeitura.Date)
+                                                             .Select(g => new RetornoMediaTemperaturaViewModel
+                                                             {
+                                                                 DataLeitura = g.Key,
+                                                                 MediaTemperatura = g.Average(t => t.ValorTemperatura),
+                                                                 MenorTemperatura = g.Min(t => t.ValorTemperatura),
+                                                                 MaiorTemperatura = g.Max(t => t.ValorTemperatura)
+                                                             })
+                                                             .ToList();
+
+            return retorno;
         }
 
         protected override SqlParameter[] CriaParametros(TemperaturaViewModel model)

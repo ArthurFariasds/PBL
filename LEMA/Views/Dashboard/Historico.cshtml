@@ -1,0 +1,96 @@
+﻿@model HistoricoViewModel
+
+@{
+    ViewData["Title"] = "Histórico";
+}
+
+<script type="text/javascript" src="~/js/historico.js"></script>
+
+<script>
+    var $historicoViewModel = @Html.Raw(Json.Serialize(ViewBag.HistoricoViewModel));
+</script>
+
+<section class="home-section">
+    <h1 class="text">Histórico</h1>
+    <br />
+    <form action="DadosHistorico" method="post" enctype="multipart/form-data" class="row d-flex justify-content-center align-items-center" style="gap:50px">
+        <div class="form-group col-2">
+            <label for="DataInicio" class="control-label">Data Inicio:</label>
+            <input type="date" id="DataInicio" Name="DataInicio" value="@Model.DataInicio?.ToString("yyyy-MM-dd")" class="form-control" autocomplete="off" />
+            <span asp-validation-for="DataInicio" class="text-danger"></span>
+            <br />
+        </div>
+        <div class="form-group col-2">
+            <label for="DataFim" class="control-label">Data Fim:</label>
+            <input type="date" id="DataFim" Name="DataFim" value="@Model.DataFim?.ToString("yyyy-MM-dd")" class="form-control" autocomplete="off" />
+            <br />
+        </div>
+        <div class="form-group col-2">
+            <label for="TemperaturaInicial" class="control-label">Temperatura Inicial:</label>
+            <input type="text" id="TemperaturaInicial" Name="TemperaturaInicial" value="@Model.TemperaturaInicial" class="form-control" autocomplete="off" oninput="javascript:this.value = this.value.replace(/\D/g, '')" />
+            <span asp-validation-for="TemperaturaInicial" class="text-danger"></span>
+            <br />
+        </div>
+        <div class="form-group col-2">
+            <label for="TemperaturaFinal" class="control-label">Temperatura Final:</label>
+            <input type="text" id="TemperaturaFinal" Name="TemperaturaFinal" value="@Model.TemperaturaFinal" class="form-control" autocomplete="off" oninput="javascript:this.value = this.value.replace(/\D/g, '')" />
+            <br />
+        </div>
+        <div class="div-botoes">
+            <button type="submit" class="btn" style="padding:19px; margin-top:7px">Filtrar</button>
+            <a class="btn" href="/Dashboard/Historico" style="padding:19px; margin-top:7px;color: darkred;">Limpar</a>
+        </div>
+    </form>
+    <br />
+    <div class="row justify-content-around">
+        <figure class="highcharts-figure">
+            <div id="chart-mediaTemperaturas"></div>
+        </figure>
+
+        <div class="col-4 text-center">
+            <h5>TOP 5</h5>
+            <br />
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <h6>Maiores Temperaturas</h6>
+                    <table class="table table-hover">
+                        <tr>
+                            <th style="text-align:center">Data</th>
+                            <th style="text-align:center">Temperatura</th>
+                        </tr>
+                        @foreach (var temperatura in Model.MaioresTemperaturas.OrderByDescending(o => o.ValorTemperatura).Take(5))
+                        {
+                            <tr>
+                                <td style="text-align:center">@temperatura.DataLeitura.ToShortDateString()</td>
+                                <td style="text-align:center">@temperatura.ValorTemperatura.ToString("0.00") ºC</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+
+                <div class="col-6">
+                    <h6>Menores Temperaturas</h6>
+                    <table class="table table-hover">
+                        <tr>
+                            <th style="text-align:center">Data</th>
+                            <th style="text-align:center">Temperatura</th>
+                        </tr>
+                        @foreach (var temperatura in Model.MenoresTemperaturas.OrderBy(o => o.ValorTemperatura).Take(5))
+                        {
+                            <tr>
+                                <td style="text-align:center">@temperatura.DataLeitura.ToShortDateString()</td>
+                                <td style="text-align:center">@temperatura.ValorTemperatura.ToString("0.00") ºC</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <figure class="highcharts-figure">
+        <div id="chart-history"></div>
+    </figure>
+    <table class="table table-hover">
+    </table>
+</section>

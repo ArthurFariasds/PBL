@@ -82,6 +82,10 @@ $(document).ready(function () {
         legend: {
             enabled: false
         },
+        tooltip: {
+            shared: true,
+            valueSuffix: '°C'
+        },
         plotOptions: {
             area: {
                 fillColor: {
