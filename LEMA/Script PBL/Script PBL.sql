@@ -313,3 +313,47 @@ BEGIN
  SELECT * FROM Empresa WHERE nome = @nome
 END
 GO
+
+CREATE or ALTER PROCEDURE spInserirTemperatura
+(
+ @id INT,
+ @valorTemperatura decimal(18,2),
+ @dataLeitura datetime,
+ @idDispositivo int
+)
+AS
+BEGIN
+ INSERT INTO Temperatura
+ (valorTemperatura, dataLeitura, idDispositivo)
+ VALUES
+ (@valorTemperatura, @dataLeitura, @idDispositivo)
+END
+GO
+
+CREATE or ALTER PROCEDURE spAlterarTemperatura
+(
+ @id INT,
+ @valorTemperatura decimal(18,2),
+ @dataLeitura datetime,
+ @idDispositivo int
+)
+AS
+BEGIN
+ UPDATE Temperatura SET
+ valorTemperatura = @valorTemperatura,
+ dataLeitura = @dataLeitura,
+ idDispositivo = @idDispositivo
+ WHERE id = @id
+END
+GO
+
+CREATE or ALTER PROCEDURE spListagemTemperatura
+(
+ @tabela VARCHAR(MAX),
+ @ordem VARCHAR(MAX))
+AS
+BEGIN
+ EXEC('SELECT * FROM ' + @tabela +
+ ' ORDER BY ' + @ordem)
+END
+GO
