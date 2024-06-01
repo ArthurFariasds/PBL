@@ -66,5 +66,18 @@ namespace LEMA.DAO
             Tabela = "Dispositivo";
             NomeSpListagem = "spListagemDispositivos";
         }
+
+        public bool DispositivoExiste(string dispositivo)
+        {
+            var p = new SqlParameter[]
+            {
+                 new SqlParameter("nome", dispositivo)
+            };
+            var tabela = HelperDAO.ExecutaProcSelect("spConsultarDispositivo", p);
+            if (tabela.Rows.Count == 0)
+                return false;
+
+            return true;
+        }
     }
 }

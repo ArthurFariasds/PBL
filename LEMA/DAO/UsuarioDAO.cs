@@ -14,13 +14,14 @@ namespace PBL.DAO
             if (imgByte == null)
                 imgByte = Array.Empty<byte>();
 
-            SqlParameter[] parametros = new SqlParameter[6];
+            SqlParameter[] parametros = new SqlParameter[7];
             parametros[0] = new SqlParameter("id", model.Id);
             parametros[1] = new SqlParameter("username", model.Usuario);
             parametros[2] = new SqlParameter("senha", model.Senha);
             parametros[3] = new SqlParameter("perfil", model.Perfil);
             parametros[4] = new SqlParameter("imagem", imgByte);
-            parametros[5] = new SqlParameter("idEmpresa", model.IdEmpresa);
+            parametros[5] = new SqlParameter("idEmpresa", model.IdEmpresa != 0 ? (object)model.IdEmpresa : DBNull.Value);
+            parametros[6] = new SqlParameter("idDispositivo", model.IdDispositivo != 0 ? (object)model.IdDispositivo : DBNull.Value);
 
             return parametros;
 
@@ -39,9 +40,13 @@ namespace PBL.DAO
                 c.ImagemEmByte = registro["imagem"] as byte[];
             if (registro["idEmpresa"] != DBNull.Value)
                 c.IdEmpresa = Convert.ToInt32(registro["idEmpresa"]);
+            if (registro["idDispositivo"] != DBNull.Value)
+                c.IdDispositivo = Convert.ToInt32(registro["idDispositivo"]);
 
             if (registro.Table.Columns.Contains("Empresa"))
                 c.NomeEmpresa = Convert.ToString(registro["Empresa"]);
+            if (registro.Table.Columns.Contains("Dispositivo"))
+                c.NomeDispositivo = Convert.ToString(registro["Dispositivo"]);
 
 
             return c;

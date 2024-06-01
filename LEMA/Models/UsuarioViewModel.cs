@@ -10,6 +10,8 @@ namespace PBL.Models
         public string Perfil { get; set; }
         public int IdEmpresa { get; set; }
         public string NomeEmpresa { get; set; }
+        public int IdDispositivo { get; set; }
+        public string NomeDispositivo { get; set; }
 
         public IFormFile? Imagem { get; set; }
 

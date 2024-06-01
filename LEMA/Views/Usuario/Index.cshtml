@@ -19,6 +19,7 @@
             <th style="text-align:center">SENHA</th>
             <th style="text-align:center">PERFIL</th>
             <th style="text-align:center">EMPRESA</th>
+            <th style="text-align:center">DISPOSITIVO</th>
             <th style="text-align:center">AÇÕES</th>
         </tr>
         @foreach (var usuario in Model)
@@ -42,6 +43,7 @@
 
                 <td style="text-align:center">@usuario.Perfil</td>
                 <td style="text-align:center">@usuario.NomeEmpresa</td>
+                <td style="text-align:center">@usuario.NomeDispositivo</td>
                 @if (usuario.Id != ViewBag.IdUsuario)
                 {
                     <td style="text-align:center">

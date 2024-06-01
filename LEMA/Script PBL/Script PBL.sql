@@ -1,9 +1,27 @@
 CREATE DATABASE PBL
 USE PBL
 
-DROP TABLE UsuarioDispositivo
-DROP TABLE Dispositivo
 DROP TABLE Usuario
+DROP TABLE Empresa
+DROP TABLE Temperatura
+DROP TABLE Dispositivo
+
+CREATE TABLE Empresa(
+	id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+	telefone VARCHAR(50) NOT NULL,
+	imagem VARBINARY(MAX)
+); 
+GO
+
+CREATE TABLE Dispositivo (
+    id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	nome VARCHAR(50) NOT NULL,
+    descricao VARCHAR(50),
+	dataCriacao DATETIME,
+	IdDispositivoApi varchar(50)
+); 
+GO
 
 CREATE TABLE Usuario (
     id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
@@ -11,24 +29,19 @@ CREATE TABLE Usuario (
     senha VARCHAR(50) NOT NULL,
 	perfil VARCHAR(50) NOT NULL,
 	imagem VARBINARY(MAX),
-	idEmpresa INT
-); 
-GO 
-select * from Usuario
-insert into Usuario (username, senha, perfil) values ('admin', '1234', 'Administrador')
-
-CREATE TABLE Dispositivo (
-    id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    descricao VARCHAR(50) NOT NULL
+	idEmpresa INT NULL,
+	idDispositivo INT NULL,
+	FOREIGN KEY (idEmpresa) REFERENCES Empresa(id),
+	FOREIGN KEY (idDispositivo) REFERENCES Dispositivo(id)
 ); 
 GO
 
-CREATE TABLE UsuarioDispositivo (
-    id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    IdUsuario INT NOT NULL,
-    IdDispositivo INT NOT NULL,
-    FOREIGN KEY (IdUsuario) REFERENCES Usuario(id),
-    FOREIGN KEY (IdDispositivo) REFERENCES Dispositivo(id)
+CREATE TABLE Temperatura(
+	id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    valorTemperatura DECIMAL(18,2) NOT NULL,
+	dataLeitura DATETIME,
+	idDispositivo INT NOT NULL,
+	FOREIGN KEY (IdDispositivo) REFERENCES Dispositivo(id)
 );
 GO
 -------------------------------------------------------------------------------------------------------
@@ -64,7 +77,7 @@ BEGIN
 END
 GO
 
--------------------------------------------------------------------------------------------------------
+--==========================================USUARIO==========================================
 CREATE or ALTER PROCEDURE spInserirUsuario
 (
  @id INT,
@@ -72,14 +85,15 @@ CREATE or ALTER PROCEDURE spInserirUsuario
  @senha VARCHAR(50),
  @perfil VARCHAR(50),
  @imagem VARBINARY(MAX),
- @idEmpresa INT
+ @idEmpresa INT = null,
+ @idDispositivo INT = null
 )
 AS
 BEGIN
  INSERT INTO Usuario
- (username, senha, perfil, imagem, idEmpresa)
+ (username, senha, perfil, imagem, idEmpresa, idDispositivo)
  VALUES
- (@username, @senha, @perfil, @imagem, @idEmpresa)
+ (@username, @senha, @perfil, @imagem, @idEmpresa, @idDispositivo)
 END
 GO
 
@@ -90,7 +104,8 @@ CREATE or ALTER PROCEDURE spAlterarUsuario
  @senha VARCHAR(50),
  @perfil VARCHAR(50),
  @imagem VARBINARY(MAX),
- @idEmpresa INt
+ @idEmpresa INT,
+ @idDispositivo INT
 )
 AS
 BEGIN
@@ -99,7 +114,8 @@ BEGIN
  senha = @senha,
  perfil = @perfil,
  imagem = @imagem,
- idEmpresa = @idEmpresa
+ idEmpresa = @idEmpresa,
+ idDispositivo = @idDispositivo
  WHERE id = @id
 END
 GO
@@ -149,11 +165,12 @@ CREATE or ALTER PROCEDURE spListagemUsuarios
  @ordem VARCHAR(MAX))
 AS
 BEGIN
-    SELECT Usuario.*, empresa.Nome as 'Empresa' FROM   Usuario
+    SELECT Usuario.*, empresa.Nome as 'Empresa', dispositivo.Nome as 'Dispositivo' FROM Usuario
 	left join Empresa on empresa.id  = Usuario.IdEmpresa
+	left join Dispositivo on dispositivo.id = Usuario.idDispositivo
 END
 GO
--------------------------------------------------------------------------------------------------------
+
 CREATE or ALTER PROCEDURE spAlterarImagemUsuario
 (
  @id INT,
@@ -167,7 +184,7 @@ BEGIN
 END
 GO
 
--------------------------------------------------------------------------------------------------------
+--==========================================DISPOSITIVO==========================================
 
 CREATE or ALTER PROCEDURE spInserirDispositivo
 (
@@ -215,11 +232,11 @@ GO
 
 CREATE or ALTER PROCEDURE spConsultarDispositivo
 (
- @id INT
+ @nome VARCHAR(50)
 )
 AS
 BEGIN
- SELECT * FROM Dispositivo WHERE id = @id
+ SELECT * FROM Dispositivo WHERE nome = @nome
 END
 GO
 
@@ -235,31 +252,8 @@ BEGIN
 END
 GO
 
---APÓS O TERMINO DAS ALTERAÇÕES, SUBIR PARA OS RESPECTIVOS 'CREATE TABLE' PARA GERAR TUDO AUTOMATICAMENTE COM O F5
-------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------
-ALTER TABLE Dispositivo ADD dataCriacao DateTime
-ALTER TABLE Dispositivo ADD nome VARCHAR(50)
+--==========================================EMPRESA==========================================
 
-CREATE TABLE Temperatura(
-	id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    valorTemperatura DECIMAL(18,2) NOT NULL,
-	dataLeitura DATETIME,
-	idDispositivo INT NOT NULL,
-	FOREIGN KEY (IdDispositivo) REFERENCES Dispositivo(id)
-)
-
-alter table dispositivo 
-add IdDispositivoApi varchar(50)
-
-CREATE TABLE Empresa(
-	id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    nome VARCHAR(50) NOT NULL,
-	telefone VARCHAR(50) NOT NULL,
-	imagem VARBINARY(MAX)
-)
-
------------------------------
 CREATE or ALTER PROCEDURE spInserirEmpresa
 (
  @id INT,
@@ -314,6 +308,7 @@ BEGIN
 END
 GO
 
+--==========================================TEMPERATURA==========================================
 CREATE or ALTER PROCEDURE spInserirTemperatura
 (
  @id INT,
@@ -357,3 +352,19 @@ BEGIN
  ' ORDER BY ' + @ordem)
 END
 GO
+
+--==========================================INSERT==========================================
+
+INSERT INTO Empresa (nome, telefone, imagem) VALUES ('Empresa 1', '(99) 9999-9999', null)
+INSERT INTO Empresa (nome, telefone, imagem) VALUES ('Empresa 2', '(99) 9999-9999', null)
+INSERT INTO Empresa (nome, telefone, imagem) VALUES ('Empresa 3', '(99) 9999-9999', null)
+
+INSERT INTO Dispositivo (nome, descricao, dataCriacao, idDispositivoApi) VALUES ('Dispositivo 1', 'Dispositivo 1', GETDATE(), 'temp001')
+
+INSERT INTO Usuario (username, senha, perfil, imagem, idEmpresa) VALUES ('admin', '1234', 'Administrador', null, null)
+INSERT INTO Usuario (username, senha, perfil, imagem, idEmpresa) VALUES ('admin 2', '1234', 'Administrador', null, null)
+INSERT INTO Usuario (username, senha, perfil, imagem, idEmpresa) VALUES ('user', '1234', 'Padrão', null, null)
+INSERT INTO Usuario (username, senha, perfil, imagem, idEmpresa) VALUES ('user 2', '1234', 'Padrão', null, null)
+INSERT INTO Usuario (username, senha, perfil, imagem, idEmpresa) VALUES ('user 3', '1234', 'Padrão', null, null)
+
+

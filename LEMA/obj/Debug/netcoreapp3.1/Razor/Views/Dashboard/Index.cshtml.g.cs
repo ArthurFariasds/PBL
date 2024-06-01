@@ -26,8 +26,22 @@ using PBL.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\arthu\OneDrive\Área de Trabalho\PBL\PBL\LEMA\Views\_ViewImports.cshtml"
+using LEMA;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\arthu\OneDrive\Área de Trabalho\PBL\PBL\LEMA\Views\_ViewImports.cshtml"
+using LEMA.Models;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d5ed7103c4a190a7f793b102f1ac7f2503aedaeb", @"/Views/Dashboard/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bb92c2242f609468a1d74684c78535caac61693a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"54af81bc992bdced12f1f1100022cceb7af457cc", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Dashboard_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     #nullable disable
@@ -67,7 +81,7 @@ using PBL.Models;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d5ed7103c4a190a7f793b102f1ac7f2503aedaeb4058", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d5ed7103c4a190a7f793b102f1ac7f2503aedaeb4411", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

@@ -26,8 +26,22 @@ using PBL.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\arthu\OneDrive\Área de Trabalho\PBL\PBL\LEMA\Views\_ViewImports.cshtml"
+using LEMA;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\arthu\OneDrive\Área de Trabalho\PBL\PBL\LEMA\Views\_ViewImports.cshtml"
+using LEMA.Models;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b361430fcba03f891bcba367062f70a59080488d", @"/Views/Login/Login.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bb92c2242f609468a1d74684c78535caac61693a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"54af81bc992bdced12f1f1100022cceb7af457cc", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Login_Login : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<LoginViewModel>
     #nullable disable
@@ -76,9 +90,9 @@ using PBL.Models;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b361430fcba03f891bcba367062f70a59080488d6214", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b361430fcba03f891bcba367062f70a59080488d6567", async() => {
                 WriteLiteral("\r\n    <div class=\"container\">\r\n        <div class=\"col-12 text-center align-self-center py-5\">\r\n            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "b361430fcba03f891bcba367062f70a59080488d6586", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "b361430fcba03f891bcba367062f70a59080488d6939", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -110,7 +124,7 @@ WriteAttributeValue("", 714, Model.Usuario, 714, 14, false);
 #nullable disable
                 EndWriteAttribute();
                 WriteLiteral(">\r\n                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b361430fcba03f891bcba367062f70a59080488d8664", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b361430fcba03f891bcba367062f70a59080488d9017", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();
@@ -146,7 +160,7 @@ WriteAttributeValue("", 1109, Model.Senha, 1109, 12, false);
 #nullable disable
                 EndWriteAttribute();
                 WriteLiteral(">\r\n                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b361430fcba03f891bcba367062f70a59080488d11011", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b361430fcba03f891bcba367062f70a59080488d11364", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();

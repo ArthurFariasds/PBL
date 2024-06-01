@@ -64,6 +64,12 @@
                                 <span asp-validation-for="IdEmpresa" class="text-danger"></span>
                                 <br />
                             </div>
+                            <div>
+                                <label for="Dispositivo" class="control-label">Dispositivo</label>
+                                <select asp-for="IdDispositivo" asp-items="ViewBag.Dispositivo" class="form-control"> </select>
+                                <span asp-validation-for="IdDispositivo" class="text-danger"></span>
+                                <br />
+                            </div>
                             <div class="form-group">
                                 <label for="Perfil" class="control-label">Perfil <span class="mandatory"> *</span></label>
                                 <select asp-for="Perfil" class="form-control">

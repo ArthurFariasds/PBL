@@ -26,8 +26,22 @@ using PBL.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\arthu\OneDrive\Área de Trabalho\PBL\PBL\LEMA\Views\_ViewImports.cshtml"
+using LEMA;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\arthu\OneDrive\Área de Trabalho\PBL\PBL\LEMA\Views\_ViewImports.cshtml"
+using LEMA.Models;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1f82f2f38e8131d51f8bbe8db5d5b4275783c5d9", @"/Views/Login/Register.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bb92c2242f609468a1d74684c78535caac61693a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"54af81bc992bdced12f1f1100022cceb7af457cc", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Login_Register : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<LoginViewModel>
     #nullable disable
@@ -76,9 +90,9 @@ using PBL.Models;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1f82f2f38e8131d51f8bbe8db5d5b4275783c5d96229", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1f82f2f38e8131d51f8bbe8db5d5b4275783c5d96582", async() => {
                 WriteLiteral("\r\n    <div class=\"container\">\r\n        <div class=\"col-12 text-center align-self-center py-5\">\r\n            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "1f82f2f38e8131d51f8bbe8db5d5b4275783c5d96601", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "1f82f2f38e8131d51f8bbe8db5d5b4275783c5d96954", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -110,7 +124,7 @@ WriteAttributeValue("", 717, Model.Usuario, 717, 14, false);
 #nullable disable
                 EndWriteAttribute();
                 WriteLiteral(">\r\n                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1f82f2f38e8131d51f8bbe8db5d5b4275783c5d98688", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1f82f2f38e8131d51f8bbe8db5d5b4275783c5d99041", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();
@@ -146,7 +160,7 @@ WriteAttributeValue("", 1112, Model.Senha, 1112, 12, false);
 #nullable disable
                 EndWriteAttribute();
                 WriteLiteral(">\r\n                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1f82f2f38e8131d51f8bbe8db5d5b4275783c5d911041", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1f82f2f38e8131d51f8bbe8db5d5b4275783c5d911394", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();
@@ -182,7 +196,7 @@ WriteAttributeValue("", 1526, Model.ConfirmarSenha, 1526, 21, false);
 #nullable disable
                 EndWriteAttribute();
                 WriteLiteral(">\r\n                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1f82f2f38e8131d51f8bbe8db5d5b4275783c5d913425", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1f82f2f38e8131d51f8bbe8db5d5b4275783c5d913778", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();

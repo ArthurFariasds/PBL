@@ -15,11 +15,13 @@ namespace PBL.Controllers
 
         protected override void ValidaDados(DispositivoViewModel model, string operacao)
         {
-            if (model.Nome == null)
-                ModelState.AddModelError("Usuario", "Usuário não preenchido!");
+            DispositivoDAO dispositivoDao = new DispositivoDAO();
 
-            if (model.Descricao == null)
-                ModelState.AddModelError("Senha", "Senha não preenchida!");
+            if (string.IsNullOrEmpty(model.Nome))
+                ModelState.AddModelError("Nome", "Dispositivo não preenchido!");
+
+            if (model.Nome != null && dispositivoDao.DispositivoExiste(model.Nome) && operacao == "I")
+                ModelState.AddModelError("Nome", "Nome de dispositivo já existente!");
         }
 
         protected override void PreencheDadosParaView(string Operacao, DispositivoViewModel model)
