@@ -85,9 +85,9 @@ namespace LEMA.DAO
         public List<(string, int)> ListarDispositivosNaoAssociados(int id)
         {
             var p = new SqlParameter[]
-           {
+            {
                  new SqlParameter("id", id)
-           };
+            };
             List<(string, int) > dispositivosNaoAssociados = new List<(string, int)>();
 
             var tabela = HelperDAO.ExecutaProcSelect("spListarDispositivosSemUsuario", p);

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using PBL.DAO;
 using PBL.Models;
 using System;
@@ -46,7 +47,7 @@ namespace PBL.Controllers
 
                 UsuarioDAO dao = new UsuarioDAO();
                 UsuarioViewModel usuario = dao.Consulta(HelperControllers.GetUsuarioId(HttpContext.Session));
-
+                ViewBag.Logado = true;
                 ViewBag.IdUsuario = HelperControllers.GetUsuarioId(HttpContext.Session);
                 ViewBag.Imagem64 = usuario.ImagemEmBase64;
                 HttpContext.Session.SetString("Perfil", usuario.Perfil);

@@ -1,5 +1,6 @@
 ﻿using LEMA.DAO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 using PBL.DAO;
 using PBL.Models;
@@ -51,6 +52,17 @@ namespace PBL.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            if (!HelperControllers.VerificaUserLogado(HttpContext.Session))
+                context.Result = RedirectToAction("Login", "Login");
+            else
+            {
+                ViewBag.Logado = true;
+                base.OnActionExecuting(context);
+            }
         }
     }
 }

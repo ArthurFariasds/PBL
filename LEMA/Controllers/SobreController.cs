@@ -1,5 +1,6 @@
 ﻿using LEMA.DAO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using PBL.DAO;
 using PBL.Models;
 
@@ -27,6 +28,17 @@ namespace PBL.Controllers
                 ViewBag.NomeEmpresa = "";
 
             return View();
+        }
+
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            if (!HelperControllers.VerificaUserLogado(HttpContext.Session))
+                context.Result = RedirectToAction("Login", "Login");
+            else
+            {
+                ViewBag.Logado = true;
+                base.OnActionExecuting(context);
+            }
         }
     }
 }
