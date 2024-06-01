@@ -6,6 +6,7 @@ namespace PBL.Models
 {
     public class HistoricoViewModel
     {
+        public int? IdDispositivo { get; set; }
         public double? TemperaturaInicial { get; set; }
         public double? TemperaturaFinal { get; set; }
         public DateTime? DataInicio { get; set; }

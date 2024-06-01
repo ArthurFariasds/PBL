@@ -38,7 +38,7 @@ namespace LEMA.DAO
         {
             HistoricoViewModel retorno = new HistoricoViewModel();
 
-            List<TemperaturaViewModel> listaTemperaturas = base.Listagem().OrderBy(o => o.DataLeitura).ToList();
+            List<TemperaturaViewModel> listaTemperaturas = base.Listagem().Where(xs => xs.IdDispositivo == filtro.IdDispositivo).OrderBy(o => o.DataLeitura).ToList();
 
             if (filtro.DataInicio.HasValue)
                 listaTemperaturas = listaTemperaturas.Where(xs => xs.DataLeitura >= filtro.DataInicio.Value).ToList();

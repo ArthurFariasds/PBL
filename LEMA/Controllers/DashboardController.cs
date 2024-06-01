@@ -2,7 +2,9 @@
 using LEMA.Models;
 using LEMA.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Diagnostics;
 using PBL.Controllers;
+using PBL.DAO;
 using PBL.Models;
 
 namespace LEMA.Controllers
@@ -21,15 +23,18 @@ namespace LEMA.Controllers
 
         public IActionResult DadosHistorico(HistoricoViewModel filtro)
         {
+            UsuarioDAO usuarioDao = new UsuarioDAO();
+            var idDispositivo = usuarioDao.Consulta(HelperControllers.GetUsuarioId(HttpContext.Session)).IdDispositivo;
+
             if (filtro == null)
-                filtro = new HistoricoViewModel();
+                filtro = new HistoricoViewModel { IdDispositivo = idDispositivo };
             else
             {
                 ValidaDados(filtro);
 
                 if (!ModelState.IsValid)
                 {
-                    ViewBag.HistoricoViewModel = new TemperaturaDAO().BuscarHistorico(new HistoricoViewModel());
+                    ViewBag.HistoricoViewModel = new TemperaturaDAO().BuscarHistorico(new HistoricoViewModel { IdDispositivo = idDispositivo });
                     filtro.MenoresTemperaturas = ViewBag.HistoricoViewModel.MenoresTemperaturas;
                     filtro.MaioresTemperaturas = ViewBag.HistoricoViewModel.MaioresTemperaturas;
                     filtro.MediasDasTemperaturas = ViewBag.HistoricoViewModel.MediasDasTemperaturas;
@@ -37,6 +42,7 @@ namespace LEMA.Controllers
                 }
             }
 
+            filtro.IdDispositivo = idDispositivo;
             HistoricoViewModel historico = new TemperaturaDAO().BuscarHistorico(filtro);
             historico.DataInicio = filtro.DataInicio;
             historico.DataFim = filtro.DataFim;
@@ -50,8 +56,11 @@ namespace LEMA.Controllers
         public IActionResult Historico()
         {
             TemperaturaDAO dao = new TemperaturaDAO();
+            UsuarioDAO usuarioDao = new UsuarioDAO();
             dao.GetTemperatura();
-            HistoricoViewModel historico = dao.BuscarHistorico(new HistoricoViewModel());
+
+            var idUsuario = HelperControllers.GetUsuarioId(HttpContext.Session);
+            HistoricoViewModel historico = dao.BuscarHistorico(new HistoricoViewModel{ IdDispositivo = usuarioDao.Consulta(idUsuario).IdDispositivo });
             ViewBag.HistoricoViewModel = historico;
             return View(historico);
         }
