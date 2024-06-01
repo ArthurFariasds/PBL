@@ -12,14 +12,18 @@ namespace LEMA.DAO
 {
     public class TemperaturaDAO : PadraoDAO<TemperaturaViewModel>
     {
-        public async void GetTemperatura()
+        public async void GetTemperatura(int IdDispositivo)
         {
             DateTime ultimaDataLeitura = this.Listagem().Last().DataLeitura;
+            DispositivoDAO dispositivoDAO = new DispositivoDAO();
+
+            string dispositivoApi = dispositivoDAO.Listagem().Where(x => x.Id == IdDispositivo).FirstOrDefault().IdDispositivoApi;
+            int idDipositivoApi = Convert.ToInt32(dispositivoApi.Substring(4, 3));
 
             HttpClientTemperatura cliente = new HttpClientTemperatura();
             try
             {
-                List<TemperaturaViewModel> retornoTemperatura = await cliente.GetTemperatura("Temp:001", ultimaDataLeitura);
+                List<TemperaturaViewModel> retornoTemperatura = await cliente.GetTemperatura(idDipositivoApi, ultimaDataLeitura);
 
                 foreach (TemperaturaViewModel temperatura in retornoTemperatura)
                 {

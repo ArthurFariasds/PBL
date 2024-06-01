@@ -57,7 +57,8 @@ namespace LEMA.Controllers
         {
             TemperaturaDAO dao = new TemperaturaDAO();
             UsuarioDAO usuarioDao = new UsuarioDAO();
-            dao.GetTemperatura();
+            var idDispositivo = usuarioDao.Consulta(HelperControllers.GetUsuarioId(HttpContext.Session)).IdDispositivo;
+            dao.GetTemperatura(idDispositivo);
 
             var idUsuario = HelperControllers.GetUsuarioId(HttpContext.Session);
             HistoricoViewModel historico = dao.BuscarHistorico(new HistoricoViewModel{ IdDispositivo = usuarioDao.Consulta(idUsuario).IdDispositivo });
@@ -68,7 +69,9 @@ namespace LEMA.Controllers
         public JsonResult GetTemperatura()
         {
             HttpClientTemperatura client = new HttpClientTemperatura();
-            RetornoTemperatura temperaturas = client.GetUltimaTemperatura();
+            UsuarioDAO usuarioDao = new UsuarioDAO();
+            var idDispositivo = usuarioDao.Consulta(HelperControllers.GetUsuarioId(HttpContext.Session)).IdDispositivo;
+            RetornoTemperatura temperaturas = client.GetUltimaTemperatura(idDispositivo);
 
             return Json(temperaturas);
         }

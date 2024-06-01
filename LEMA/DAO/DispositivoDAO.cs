@@ -35,6 +35,15 @@ namespace LEMA.DAO
             string idDispositivoApi = this.Consulta(id).IdDispositivoApi;
             client.DeletarDispositivo(idDispositivoApi);
 
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            UsuarioViewModel usuarioDispositivo = usuarioDAO.Listagem().Where(x => x.IdDispositivo == id).FirstOrDefault();
+
+            if(usuarioDispositivo != null)
+            {
+                usuarioDispositivo.IdDispositivo = 0;
+                usuarioDAO.Update(usuarioDispositivo);
+            }
+              
             base.Delete(id);
         }
 

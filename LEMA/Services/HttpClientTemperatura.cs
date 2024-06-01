@@ -13,7 +13,7 @@ namespace LEMA.Services
     public class HttpClientTemperatura
     {
         private HttpClient client;
-        private const string IP_MAQUINA = "104.41.54.61";
+        private const string IP_MAQUINA = "191.232.181.249";
         string url = $"http://{IP_MAQUINA}:8666";
         public HttpClientTemperatura()
         {
@@ -33,17 +33,17 @@ namespace LEMA.Services
             return _client;
         }
 
-        public RetornoTemperatura? GetUltimaTemperatura()
+        public RetornoTemperatura? GetUltimaTemperatura(int idDispositivo)
         {
-            return Task.Run(() => GetUltimaTemperaturaAsync()).Result;
+            return Task.Run(() => GetUltimaTemperaturaAsync(idDispositivo)).Result;
         }
 
-        private async Task<RetornoTemperatura?> GetUltimaTemperaturaAsync()
+        private async Task<RetornoTemperatura?> GetUltimaTemperaturaAsync(int idDispositivo)
         {
-            HttpResponseMessage response = await client.GetAsync(url + "/STH/v1/contextEntities/type/Temp/id/urn:ngsi-ld:Temp:001/attributes/temperature?lastN=1");
+            HttpResponseMessage response = await client.GetAsync(url + "/STH/v1/contextEntities/type/Temp/id/urn:ngsi-ld:Temp:" + idDispositivo.ToString("D3") + "/attributes/temperature?lastN=1");
             return await response.Content.ReadFromJsonAsync<RetornoTemperatura>();
         }
-        public async Task<List<TemperaturaViewModel>> GetTemperatura(string deviceId, DateTime? dateFrom = null, int hLimit = 100)
+        public async Task<List<TemperaturaViewModel>> GetTemperatura(int deviceId, DateTime? dateFrom = null, int hLimit = 100)
         {
             var allData = new List<TemperaturaViewModel>();
             bool moreData = true;
@@ -68,7 +68,7 @@ namespace LEMA.Services
                     queryParams.Add($"hLimit={hLimit}");
 
                 string queryString = string.Join("&", queryParams);
-                var response = await client.GetAsync(url + $"/STH/v1/contextEntities/type/Temp/id/urn:ngsi-ld:{deviceId}/attributes/temperature?{queryString}");
+                var response = await client.GetAsync(url + $"/STH/v1/contextEntities/type/Temp/id/urn:ngsi-ld:Temp:{deviceId.ToString("D3")}/attributes/temperature?{queryString}");
                 response.EnsureSuccessStatusCode();
 
                 var content = await response.Content.ReadFromJsonAsync<RetornoTemperatura>();
@@ -85,7 +85,7 @@ namespace LEMA.Services
                         {
                             ValorTemperatura = values.attrValue,
                             DataLeitura = values.recvTime.Value,
-                            IdDispositivo = 1
+                            IdDispositivo = deviceId
                         });
                     }
                     hOffset += hLimit;
