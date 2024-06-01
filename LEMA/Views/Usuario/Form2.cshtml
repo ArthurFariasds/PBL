@@ -1,0 +1,62 @@
+﻿@model UsuarioViewModel
+
+@{
+    ViewData["Title"] = "Usuário";
+}
+<link rel="stylesheet" href="~/css/usuario.css">
+<script type="text/javascript" src="~/js/usuario.js"></script>
+
+<section class="home-section">
+
+    <h1 class="text">Associar Dispositivo ao Usuário</h1>
+
+    <div class="center-form">
+        <form action="Save" method="post" enctype="multipart/form-data" class="form-container">
+            <input type="hidden" value="@ViewBag.Operacao" name="operacao" />
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-md-3 card-profile">
+                    @if (string.IsNullOrEmpty(Model.ImagemEmBase64))
+                    {
+                        <img id="imgPreview" src="~/img/Profile-Icon.png" class="img-responsive img-thumbnail" width="100">
+                    }
+                    else
+                    {
+                        <img id="imgPreview" src="data:image/jpeg;base64,@Model.ImagemEmBase64" class="img-responsive img-thumbnail" width="100">
+                    }
+                    <br />
+                </div>
+                <div class="col-md-9">
+                    <div class="p-3 py-5">
+                        @if (ViewBag.Operacao != "I")
+                        {
+                            <input type="hidden" name="Id" value="@Model.Id" />
+                            <input type="hidden" name="Senha" value="@Model.Senha" />
+                            <input type="hidden" name="Empresa" value="@Model.NomeEmpresa" />
+                            <input type="hidden" asp-for="Perfil" value="@Model.Perfil" />
+
+                        }
+                        <div class="form-group">
+                            <label for="Usuario" class="control-label">Usuário</label>
+                            <input type="text" Name="Usuario" value="@Model.Usuario" class="form-control" autocomplete="off" readonly />
+                            <span asp-validation-for="Usuario" class="text-danger"></span>
+                            <br />
+                        </div>
+                            <div>
+                                <label for="Dispositivo" class="control-label">Dispositivo</label>
+                                <select asp-for="IdDispositivo" asp-items="ViewBag.Dispositivo" class="form-control"> </select>
+                                <span asp-validation-for="IdDispositivo" class="text-danger"></span>
+                                <br />
+                            </div>                                           
+                        <div class="form-group">
+                            <br />
+                            <input type="submit" class="btn" value="Salvar dados" />
+                            <a href="#" onclick="history.back()" class="btn" style="color: darkred;">Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

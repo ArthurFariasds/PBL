@@ -2,8 +2,10 @@
 using PBL.DAO;
 using PBL.Models;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 
 namespace LEMA.DAO
@@ -79,5 +81,26 @@ namespace LEMA.DAO
 
             return true;
         }
+
+        public List<(string, int)> ListarDispositivosNaoAssociados(int id)
+        {
+            var p = new SqlParameter[]
+           {
+                 new SqlParameter("id", id)
+           };
+            List<(string, int) > dispositivosNaoAssociados = new List<(string, int)>();
+
+            var tabela = HelperDAO.ExecutaProcSelect("spListarDispositivosSemUsuario", p);
+
+            foreach (DataRow registro in tabela.Rows)
+            {
+                string nomeDispositivo = registro["nome"].ToString();
+                int idDispositivo = Convert.ToInt32(registro["id"]);
+                dispositivosNaoAssociados.Add((nomeDispositivo, idDispositivo));
+            }
+
+            return dispositivosNaoAssociados;
+        }
+
     }
 }

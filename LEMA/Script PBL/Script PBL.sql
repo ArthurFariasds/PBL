@@ -252,6 +252,18 @@ BEGIN
 END
 GO
 
+CREATE OR ALTER PROCEDURE spListarDispositivosSemUsuario
+(
+ @id INT
+)
+AS
+BEGIN
+    SELECT Dispositivo.nome, Dispositivo.id
+    FROM Dispositivo
+    LEFT JOIN Usuario ON Dispositivo.id = Usuario.idDispositivo
+    WHERE Usuario.idDispositivo IS NULL or Usuario.id = @id;
+END
+
 --==========================================EMPRESA==========================================
 
 CREATE or ALTER PROCEDURE spInserirEmpresa
@@ -360,6 +372,8 @@ INSERT INTO Empresa (nome, telefone, imagem) VALUES ('Empresa 2', '(99) 9999-999
 INSERT INTO Empresa (nome, telefone, imagem) VALUES ('Empresa 3', '(99) 9999-9999', null)
 
 INSERT INTO Dispositivo (nome, descricao, dataCriacao, idDispositivoApi) VALUES ('Dispositivo 1', 'Dispositivo 1', GETDATE(), 'temp001')
+INSERT INTO Dispositivo (nome, descricao, dataCriacao, idDispositivoApi) VALUES ('Dispositivo 2', 'Dispositivo 1', GETDATE(), 'temp002')
+INSERT INTO Dispositivo (nome, descricao, dataCriacao, idDispositivoApi) VALUES ('Dispositivo 3', 'Dispositivo 1', GETDATE(), 'temp003')
 
 INSERT INTO Usuario (username, senha, perfil, imagem, idEmpresa) VALUES ('admin', '1234', 'Administrador', null, null)
 INSERT INTO Usuario (username, senha, perfil, imagem, idEmpresa) VALUES ('admin 2', '1234', 'Administrador', null, null)

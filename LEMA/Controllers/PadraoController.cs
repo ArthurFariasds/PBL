@@ -108,10 +108,13 @@ namespace PBL.Controllers
             ModelState.Clear();
         }
 
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int id, string formType)
         {
             try
             {
+                if (formType == "form2")
+                    NomeViewForm = "form2";
+
                 ViewBag.Operacao = "A";
                 var model = DAO.Consulta(id);
                 if (model == null)

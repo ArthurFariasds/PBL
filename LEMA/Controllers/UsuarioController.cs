@@ -66,7 +66,7 @@ namespace PBL.Controllers
         protected override void PreencheDadosParaView(string Operacao, UsuarioViewModel model)
         {
             PreparaListaEmpresasParaCombo();
-            PreparaListaDispositivosParaCombo();
+            PreparaListaDispositivosParaCombo(model);
 
             base.PreencheDadosParaView(Operacao, model);
 
@@ -91,19 +91,21 @@ namespace PBL.Controllers
             ViewBag.Empresa = listaEmpresas;
         }
 
-        private void PreparaListaDispositivosParaCombo()
+        private void PreparaListaDispositivosParaCombo(UsuarioViewModel model)
         {
             DispositivoDAO dao = new DispositivoDAO();
-            var dispositivos = dao.Listagem();
+            var dispositivos = dao.ListarDispositivosNaoAssociados(model.Id);
             List<SelectListItem> listaDispositivos = new List<SelectListItem>();
             listaDispositivos.Add(new SelectListItem("Selecione um dispositivo...", "0"));
             foreach (var dispositivo in dispositivos)
             {
-                SelectListItem item = new SelectListItem(dispositivo.Nome, dispositivo.Id.ToString());
+                SelectListItem item = new SelectListItem(dispositivo.Item1, dispositivo.Item2.ToString());
                 listaDispositivos.Add(item);
             }
             ViewBag.Dispositivo = listaDispositivos;
         }
+
+
 
     }
 }

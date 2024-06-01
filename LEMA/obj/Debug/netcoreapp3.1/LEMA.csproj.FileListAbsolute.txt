@@ -2973,3 +2973,4 @@ C:\Users\arthu\OneDrive\Área de Trabalho\PBL\PBL\LEMA\obj\Debug\netcoreapp3.1\R
 C:\Users\arthu\OneDrive\Área de Trabalho\PBL\PBL\LEMA\obj\Debug\netcoreapp3.1\Razor\Views\Empresa\Form.cshtml.g.cs
 C:\Users\arthu\OneDrive\Área de Trabalho\PBL\PBL\LEMA\obj\Debug\netcoreapp3.1\Razor\Views\Empresa\Index.cshtml.g.cs
 C:\Users\arthu\OneDrive\Área de Trabalho\PBL\PBL\LEMA\obj\Debug\netcoreapp3.1\Razor\Views\Dashboard\Historico.cshtml.g.cs
+C:\Users\arthu\OneDrive\Área de Trabalho\PBL\PBL\LEMA\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\Form2.cshtml.g.cs
