@@ -372,13 +372,11 @@ INSERT INTO Empresa (nome, telefone, imagem) VALUES ('Empresa 2', '(99) 9999-999
 INSERT INTO Empresa (nome, telefone, imagem) VALUES ('Empresa 3', '(99) 9999-9999', null)
 
 INSERT INTO Dispositivo (nome, descricao, dataCriacao, idDispositivoApi) VALUES ('Dispositivo 1', 'Dispositivo 1', GETDATE(), 'temp001')
-INSERT INTO Dispositivo (nome, descricao, dataCriacao, idDispositivoApi) VALUES ('Dispositivo 2', 'Dispositivo 1', GETDATE(), 'temp002')
-INSERT INTO Dispositivo (nome, descricao, dataCriacao, idDispositivoApi) VALUES ('Dispositivo 3', 'Dispositivo 1', GETDATE(), 'temp003')
+INSERT INTO Dispositivo (nome, descricao, dataCriacao, idDispositivoApi) VALUES ('Dispositivo 2', 'Dispositivo 2', GETDATE(), 'temp002')
+INSERT INTO Dispositivo (nome, descricao, dataCriacao, idDispositivoApi) VALUES ('Dispositivo 3', 'Dispositivo 3', GETDATE(), 'temp003')
 
 INSERT INTO Usuario (username, senha, perfil, imagem, idEmpresa) VALUES ('admin', '1234', 'Administrador', null, null)
 INSERT INTO Usuario (username, senha, perfil, imagem, idEmpresa) VALUES ('admin 2', '1234', 'Administrador', null, null)
 INSERT INTO Usuario (username, senha, perfil, imagem, idEmpresa) VALUES ('user', '1234', 'Padrão', null, null)
 INSERT INTO Usuario (username, senha, perfil, imagem, idEmpresa) VALUES ('user 2', '1234', 'Padrão', null, null)
 INSERT INTO Usuario (username, senha, perfil, imagem, idEmpresa) VALUES ('user 3', '1234', 'Padrão', null, null)
-
-
