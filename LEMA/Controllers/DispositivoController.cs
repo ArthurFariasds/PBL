@@ -22,6 +22,9 @@ namespace PBL.Controllers
 
             if (model.Nome != null && dispositivoDao.DispositivoExiste(model.Nome) && operacao == "I")
                 ModelState.AddModelError("Nome", "Nome de dispositivo já existente!");
+
+            if (string.IsNullOrEmpty(model.Descricao))
+                ModelState.AddModelError("Descricao", "Descricao não preenchida!");
         }
 
         protected override void PreencheDadosParaView(string Operacao, DispositivoViewModel model)

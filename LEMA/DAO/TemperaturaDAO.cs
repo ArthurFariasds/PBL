@@ -17,8 +17,11 @@ namespace LEMA.DAO
             DateTime ultimaDataLeitura = this.Listagem().Last().DataLeitura;
             DispositivoDAO dispositivoDAO = new DispositivoDAO();
 
-            string dispositivoApi = dispositivoDAO.Listagem().Where(x => x.Id == IdDispositivo).FirstOrDefault().IdDispositivoApi;
-            int idDipositivoApi = Convert.ToInt32(dispositivoApi.Substring(4, 3));
+            var dispositivoApi = dispositivoDAO.Listagem().Where(x => x.Id == IdDispositivo).FirstOrDefault();
+
+            int idDipositivoApi = 0;
+            if (dispositivoApi != null)
+                idDipositivoApi = Convert.ToInt32(dispositivoApi.IdDispositivoApi.Substring(4, 3));
 
             HttpClientTemperatura cliente = new HttpClientTemperatura();
             try
